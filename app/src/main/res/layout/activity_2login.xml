@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <!-- LOGO -->
+    <ImageView
+        android:id="@+id/logo1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/logo1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue_text"
+        app:layout_constraintTop_toBottomOf="@+id/logo1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <!-- LABEL EMAIL -->
+    <TextView
+        android:id="@+id/lblEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl2Email"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/appName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="32dp"/>
+
+    <!-- INPUT EMAIL -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblEmail"
+        android:layout_marginHorizontal="32dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/inp2Email"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- LABEL CONTRASEÑA -->
+    <TextView
+        android:id="@+id/lblPsw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl2Password"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/inputEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"/>
+
+    <!-- INPUT CONTRASEÑA -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputPsw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblPsw"
+        android:layout_marginHorizontal="32dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPsw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/psd2Password"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- BOTÓN INICIAR SESIÓN -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="@string/btn2LogIn"
+        android:backgroundTint="@color/blue_text"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/inputPsw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,32 @@
 <resources>
+    <!-- 1 Bienvenida -->
     <string name="app_name">DogGo</string>
-    <string name="btnComenzar">Comenzar</string>
+    <string name="lbl1Comment">Encuentra al paseador perfecto para tu mejor amigo</string>
+    <string name="btn1Start">Comenzar</string>
+    <string name="btn1LogIn">¿Ya tienes cuenta? Iniciar Sesión</string>
+    <!-- 2 Iniciar sesión -->
+    <string name="lbl2Email">Correo electrónico</string>
+    <string name="inp2Email">you@email.com</string>
+    <string name="lbl2Password">Contraseña</string>
+    <string name="psd2Password">******</string>
+    <string name="btn2LogIn">Iniciar Sesión</string>
+    <!-- 3 Selección rol -->
+    <string name="lbl3Question">¿Qué te gustaría ser?</string>
+    <string name="lbl3Owner">Dueño</string>
+    <string name="lbl3OwnerDesc">Busco paseador para mi mascota</string>
+    <string name="lbl3Walker">Paseador</string>
+    <string name="lbl3WalkerDesc">Quiero pasear perros</string>
+    <string name="btn3Next">Continuar</string>
+    <!-- 4 Perfil dueño creación -->
+    <string name="lbl4Title">Completa tu perfil</string>
+    <string name="lbl4Name">Nombre completo</string>
+    <string name="inp4Name">Tu nombre</string>
+    <string name="lbl4Direction">Dirección</string>
+    <string name="inp4Direction">Tu dirección</string>
+    <string name="lbl4Phone">Teléfono</string>
+    <string name="inp4Phone">+593</string>
+    <string name="cb4Terms">Acepto los términos y condiciones</string>
+    <string name="lbl4Steps">Pasos 1 de 2</string>
+    <string name="btn4Next">Guardar y continuar</string>
+
 </resources>
