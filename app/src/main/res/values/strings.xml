@@ -28,5 +28,24 @@
     <string name="cb4Terms">Acepto los términos y condiciones</string>
     <string name="lbl4Steps">Pasos 1 de 2</string>
     <string name="btn4Next">Guardar y continuar</string>
+    <!-- 4 Perfil dueño creación -->
+    <string name="lbl5Title">Añade tus mascotas</string>
+    <string name="lbl5Message">Añade al menos una mascota para continuar.\nPodras agregar mas despues</string>
+    <string name="lbl5Steps">Pasos 2 de 2</string>
+    <string name="btn5Next">Finalizar y continuar</string>
+    <string name="btn5AddPet">+  Añadir otra mascota</string>
+    <string name="lbl51Title">Añadir Nueva Mascota</string>
+    <string name="lbl51Nombre">Nombre</string>
+    <string name="lbl51Raza">Raza</string>
+    <string name="lbl51Edad">Edad</string>
+    <string name="lbl51Peso">Añadir Nueva Mascota</string>
+    <string name="inp51Nombre">Ej: Luna</string>
+    <string name="inp51Raza">Ej: Labrador</string>
+    <string name="inp51Peso">Ej: 25 kg</string>
+    <string name="lbl51Tamanio">Tamaño</string>
+    <string name="lbl51Comportamiento">Comportamiento</string>
+    <string name="inp51Comportamiento">Es amigable, le gusta correr...</string>
+    <string name="inp51Edad">Ej: 2 años</string>
+    <string name="btn51SavePet">Guardar Mascota</string>
 
 </resources>

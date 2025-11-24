@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DogGo">
         <activity
+            android:name=".AniadirNuevaMascotaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_4aniadir_mascotas"
+            android:exported="false" />
+        <activity
             android:name=".PerfilDuenio"
             android:exported="false" />
         <activity
