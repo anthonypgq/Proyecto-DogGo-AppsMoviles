@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SolicitudPaseador">
+
+    <ImageView
+        android:id="@+id/btn9Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/black" />
+
+    <TextView
+        android:id="@+id/lbl9Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl9Title"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/btn9Back"
+        app:layout_constraintBottom_toBottomOf="@+id/btn9Back"
+        app:layout_constraintStart_toEndOf="@+id/btn9Back"
+        android:layout_marginStart="16dp" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn9Back"
+        app:layout_constraintBottom_toTopOf="@+id/btn9Confirmar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Mascota -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl9Mascota"
+                android:textStyle="bold"/>
+            <Spinner
+                android:id="@+id/spn9Mascota"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/input_background" />
+
+            <!-- Fecha -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl9Fecha"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+            <EditText
+                android:id="@+id/txt9Fecha"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/input_background"
+                android:drawableStart="@android:drawable/ic_menu_my_calendar"
+                android:drawablePadding="12dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:hint="@string/lbl9FechaHint"/>
+
+            <!-- Hora -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl9Hora"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+            <EditText
+                android:id="@+id/txt9Hora"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/input_background"
+                android:drawableStart="@android:drawable/ic_menu_recent_history"
+                android:drawablePadding="12dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:hint="@string/lbl9HoraHint"/>
+
+            <!-- Duración -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl9Duracion"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupDuracion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:chipSpacingHorizontal="8dp">
+                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion30m" android:text="@string/btn9Duracion30m" style="@style/Widget.MaterialComponents.Chip.Choice"/>
+                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion1h" android:text="@string/btn9Duracion1h" style="@style/Widget.MaterialComponents.Chip.Choice" android:checked="true"/>
+                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion1_5h" android:text="@string/btn9Duracion1_5h" style="@style/Widget.MaterialComponents.Chip.Choice"/>
+                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion2h" android:text="@string/btn9Duracion2h" style="@style/Widget.MaterialComponents.Chip.Choice"/>
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Notas especiales -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl9Notas"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+            <EditText
+                android:id="@+id/txt9Notas"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/input_background"
+                android:hint="@string/lbl9NotasHint"
+                android:gravity="top"
+                android:padding="12dp"/>
+
+            <!-- Total -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:background="#E3F2FD"
+                android:padding="16dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/lbl9Total"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/lbl9TotalValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl9TotalValue"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn9Confirmar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btn9Confirmar"
+        app:cornerRadius="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

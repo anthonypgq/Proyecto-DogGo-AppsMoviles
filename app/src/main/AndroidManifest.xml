@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DogGo">
         <activity
+            android:name=".SolicitudPaseador"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilPaseador"
+            android:exported="false" />
+        <activity
+            android:name=".HomeDuenio"
+            android:exported="false" />
+        <activity
             android:name=".PerfilDuenio"
             android:exported="false" />
         <activity

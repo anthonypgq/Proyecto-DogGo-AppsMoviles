@@ -1,4 +1,4 @@
-<resources>
+    <resources>
     <!-- 1 Bienvenida -->
     <string name="app_name">DogGo</string>
     <string name="lbl1Comment">Encuentra al paseador perfecto para tu mejor amigo</string>
@@ -28,5 +28,44 @@
     <string name="cb4Terms">Acepto los términos y condiciones</string>
     <string name="lbl4Steps">Pasos 1 de 2</string>
     <string name="btn4Next">Guardar y continuar</string>
-
+    <!-- 7 Home Dueño -->
+    <string name="lbl7Buscar">Buscar paseadores...</string>
+    <string name="btn7MejorCalificacion">Mejor calificación</string>
+    <string name="btn7MasCercanos">Más cercanos</string>
+    <string name="btn7Precio">Precio</string>
+    <string name="lbl7Inicio">Inicio</string>
+    <string name="lbl7Chat">Chat</string>
+    <string name="lbl7Mascotas">Mascotas</string>
+    <string name="lbl7Perfil">Perfil</string>
+    <!-- 8 Perfil Paseador -->
+    <string name="lbl8NombrePaseador">María González</string>
+    <string name="lbl8Rating">4.9</string>
+    <string name="lbl8Paseos">• 127 paseos</string>
+    <string name="lbl8BiografiaTitle">Biografía</string>
+    <string name="lbl8Biografia">Amante de los animales con más de 5 años de experiencia en el cuidado de mascotas. Me encanta estar al aire libre y compartir momentos felices con los perros. Cuento con certificación en primeros auxilios para mascotas.</string>
+    <string name="lbl8ExperienciaTitle">Experiencia</string>
+    <string name="chip8PerrosGrandes">Perros grandes</string>
+    <string name="chip8PrimerosAuxilios">Primeros auxilios</string>
+    <string name="chip8Verificado">Verificado</string>
+    <string name="lbl8ResenasTitle">Reseñas</string>
+    <string name="lbl8NombreResena">Carlos Méndez</string>
+    <string name="lbl8TextoResena">¡Excelente paseadora! Mi perro la adora.</string>
+    <string name="btn8SolicitarPaseo">Solicitar Paseo</string>
+    <!-- 9 Solicitud Paseador -->
+    <string name="lbl9Title">Solicitar Paseo</string>
+    <string name="lbl9Mascota">Mascota</string>
+    <string name="lbl9Fecha">Fecha</string>
+    <string name="lbl9FechaHint">15 de Octubre, 2024</string>
+    <string name="lbl9Hora">Hora</string>
+    <string name="lbl9HoraHint">3:00 PM</string>
+    <string name="lbl9Duracion">Duración</string>
+    <string name="btn9Duracion30m">30 min</string>
+    <string name="btn9Duracion1h">1 hora</string>
+    <string name="btn9Duracion1_5h">1.5 horas</string>
+    <string name="btn9Duracion2h">2 horas</string>
+    <string name="lbl9Notas">Notas especiales (opcional)</string>
+    <string name="lbl9NotasHint">Instrucciones adicionales para el paseador...</string>
+    <string name="lbl9Total">Total:</string>
+    <string name="lbl9TotalValue">$20</string>
+    <string name="btn9Confirmar">Confirmar Solicitud</string>
 </resources>
