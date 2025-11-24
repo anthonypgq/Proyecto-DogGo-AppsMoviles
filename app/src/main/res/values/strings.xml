@@ -48,4 +48,64 @@
     <string name="inp51Edad">Ej: 2 años</string>
     <string name="btn51SavePet">Guardar Mascota</string>
 
+    <!-- ============ Activity 10 Dashboard Paseador ============ -->
+    <string name="str10SaludoHolaAna">¡Hola, Ana!</string>
+    <string name="str10CardSolicitudesPendientes">Solicitudes pendientes</string>
+    <string name="str10CardPaseosSemana">Paseos esta semana</string>
+    <string name="str10SolicitudesRecientes">Solicitudes Recientes</string>
+
+    <string name="str10MascotaMax">Max</string>
+    <string name="str10MascotaMaxDetalle">Hoy 3:00 PM  •  1 hora</string>
+    <string name="str10MascotaMaxPrecio">$ 20</string>
+
+    <string name="str10MascotaLuna">Luna</string>
+    <string name="str10MascotaLunaDetalle">Mañana 10:00 AM  •  1.5 horas</string>
+    <string name="str10MascotaLunaPrecio">$ 30</string>
+
+    <string name="str10BtnRechazar">Rechazar</string>
+    <string name="str10BtnAceptar">Aceptar</string>
+
+    <string name="str10NavInicio">Inicio</string>
+    <string name="str10NavAgenda">Agenda</string>
+    <string name="str10NavChat">Chat</string>
+    <string name="str10NavPerfil">Perfil</string>
+
+
+    <!-- ============ Activity 11 Lista Chats ============ -->
+    <string name="str11TituloMensajes">Mensajes</string>
+    <string name="str11HintBuscarConversaciones">Buscar conversaciones...</string>
+
+    <string name="str11ChatAnaNombre">Ana Pérez</string>
+    <string name="str11ChatAnaUltimo">¡Nos vemos a las 3 PM!</string>
+    <string name="str11ChatAnaHora">10:45 AM</string>
+    <string name="str11ChatAnaBadge">2</string>
+
+    <string name="str11ChatCarlosNombre">Carlos Rodríguez</string>
+    <string name="str11ChatCarlosUltimo">Perfecto, estaré allí</string>
+    <string name="str11ChatCarlosHora">9:30 AM</string>
+
+    <string name="str11ChatMariaNombre">María González</string>
+    <string name="str11ChatMariaUltimo">Gracias por el paseo!</string>
+    <string name="str11ChatMariaHora">Ayer</string>
+
+    <string name="str11NavInicio">Inicio</string>
+    <string name="str11NavAgenda">Agenda</string>
+    <string name="str11NavChat">Chat</string>
+    <string name="str11NavPerfil">Perfil</string>
+
+
+    <!-- ============ Activity 12 Chat Individual ============ -->
+    <string name="str12NombreDefault">Chat</string>
+    <string name="str12EstadoEnLinea">En línea</string>
+
+    <string name="str12MsgDer1">Hola, ¿está listo Luna?</string>
+    <string name="str12MsgIzq1">¡Sí! Acabo de llegar</string>
+    <string name="str12MsgDer2">Perfecto, bajo en 2 minutos</string>
+    <string name="str12MsgIzq2">Aquí te espero 😁</string>
+
+    <string name="str12Hora1">2:45 PM</string>
+    <string name="str12Hora2">2:46 PM</string>
+    <string name="str12Hora3">2:47 PM</string>
+
+    <string name="str12HintEscribeMensaje">Escribe un mensaje...</string>
 </resources>

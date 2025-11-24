@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DogGo">
         <activity
+            android:name=".ChatIndividual"
+            android:exported="false" />
+        <activity
+            android:name=".ChatsConPaseadores"
+            android:exported="false" />
+        <activity
+            android:name=".DashboardPaseador"
+            android:exported="false" />
+        <activity
             android:name=".SolicitudPaseador"
             android:exported="false" />
         <activity

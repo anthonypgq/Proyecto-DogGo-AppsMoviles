@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatIndividual">
+
+    <!-- AppBar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lay12AppBar"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/img12BtnAtras"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@android:drawable/ic_media_previous"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="#1A1A1A" />
+
+        <ImageView
+            android:id="@+id/img12AvatarTop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@android:drawable/sym_def_app_icon"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toEndOf="@id/img12BtnAtras"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/txt12NombreTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str12NombreDefault"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A1A"
+            app:layout_constraintStart_toEndOf="@id/img12AvatarTop"
+            app:layout_constraintTop_toTopOf="@id/img12AvatarTop"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/txt12EstadoTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str12EstadoEnLinea"
+            android:textSize="13sp"
+            android:textColor="#1DB954"
+            app:layout_constraintStart_toStartOf="@id/txt12NombreTop"
+            app:layout_constraintTop_toBottomOf="@id/txt12NombreTop"
+            android:layout_marginTop="2dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Mensajes -->
+    <ScrollView
+        android:id="@+id/scr12Mensajes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/lay12AppBar"
+        app:layout_constraintBottom_toTopOf="@id/lay12InputBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/lin12ContenedorMensajes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <!-- Burbuja derecha 1 -->
+            <LinearLayout
+                android:id="@+id/lin12MsgDer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_gravity="end">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crd12BubbleDer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="#1E63FF">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/txt12MsgDer1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12MsgDer1"
+                            android:textSize="15sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/txt12HoraDer1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12Hora1"
+                            android:textSize="12sp"
+                            android:textColor="#DCE6FF"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Burbuja izquierda 1 -->
+            <LinearLayout
+                android:id="@+id/lin12MsgIzq1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crd12BubbleIzq1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="#F2F2F2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/txt12MsgIzq1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12MsgIzq1"
+                            android:textSize="15sp"
+                            android:textColor="#1A1A1A" />
+
+                        <TextView
+                            android:id="@+id/txt12HoraIzq1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12Hora2"
+                            android:textSize="12sp"
+                            android:textColor="#8A8A8A"
+                            android:layout_marginTop="6dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Burbuja derecha 2 -->
+            <LinearLayout
+                android:id="@+id/lin12MsgDer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="14dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crd12BubbleDer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="#1E63FF">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/txt12MsgDer2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12MsgDer2"
+                            android:textSize="15sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/txt12HoraDer2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12Hora3"
+                            android:textSize="12sp"
+                            android:textColor="#DCE6FF"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Burbuja izquierda 2 -->
+            <LinearLayout
+                android:id="@+id/lin12MsgIzq2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="14dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crd12BubbleIzq2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="#F2F2F2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/txt12MsgIzq2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12MsgIzq2"
+                            android:textSize="15sp"
+                            android:textColor="#1A1A1A" />
+
+                        <TextView
+                            android:id="@+id/txt12HoraIzq2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str12Hora3"
+                            android:textSize="12sp"
+                            android:textColor="#8A8A8A"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Input bar inferior -->
+    <LinearLayout
+        android:id="@+id/lay12InputBar"
+        android:layout_width="0dp"
+        android:layout_height="74dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/img12IconAdjuntar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src=""
+            app:tint="#9A9A9A" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crd12CajaTexto"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="#F2F2F2">
+
+            <EditText
+                android:id="@+id/edt12EscribirMensaje"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:hint="@string/str12HintEscribeMensaje"
+                android:textSize="14sp"
+                android:textColor="#1A1A1A"
+                android:textColorHint="#9A9A9A" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crd12BtnEnviar"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            app:cardCornerRadius="23dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="#1E63FF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/img12IconEnviar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_menu_send"
+                app:tint="#FFFFFF" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
