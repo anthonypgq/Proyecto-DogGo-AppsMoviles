@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".PerfilDuenio">
+
+    <!-- CABECERA SUPERIOR -->
+    <LinearLayout
+        android:id="@+id/topHeader"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/titlePerfilAddPet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl5Title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
+
+    <!-- CONTENIDO CON SCROLL-->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="24dp"
+        android:fillViewport="false"
+        app:layout_constraintTop_toBottomOf="@id/topHeader"
+        app:layout_constraintBottom_toTopOf="@+id/bottomSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="0dp">
+
+            <!-- NOMBRE COMPLETO -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:paddingTop="0dp"
+                android:text="@string/lbl5Message"
+                android:textColor="@color/black" />
+
+
+            <!-- CARDSVIEWS DE LAS MASCOTAS -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerMascotas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <!--
+            val lista = listOf(
+                Pet("Luna", "Labrador", "2 años", "Mediana"),
+                Pet("Max", "Pastor Alemán", "1 año", "Grande"),
+                Pet("Kiara", "Beagle", "3 años", "Pequeña")    // ← Esto hace que aparezca otra card abajo
+            )
+
+            val adapter = PetAdapter(lista) { pet ->
+                Toast.makeText(this, "Editar ${pet.nombre}", Toast.LENGTH_SHORT).show()
+            }
+
+            recyclerMascotas.layoutManager = LinearLayoutManager(this)
+            recyclerMascotas.adapter = adapter
+            -->
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+    <!-- SECCIÓN INFERIOR -->
+    <LinearLayout
+        android:id="@+id/bottomSection"
+        android:layout_width="412dp"
+        android:layout_height="236dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl5Steps"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <!-- PROGRESS BAR -->
+        <ProgressBar
+            android:id="@+id/progressSteps"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:progress="100" />
+
+        <Button
+            android:id="@+id/btnAddPet"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/btn_white"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:stateListAnimator="@null"
+            android:text="@string/btn5AddPet"
+            android:textColor="#404040"
+            android:textSize="18sp"
+            app:backgroundTint="@null" />
+
+
+        <!-- BOTÓN -->
+        <Button
+            android:id="@+id/btnFinishAndNExt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/blue_text"
+            android:text="@string/btn5Next"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

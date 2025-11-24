@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- FOTO -->
+        <ImageView
+            android:id="@+id/imgPet"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo1"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/rounded_image_mask"/>
+
+        <!-- NOMBRE + DESCRIPCIÓN -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtTitulo"
+                android:text="Luna"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtDescripcion"
+                android:text="Labrador - 2 años - Mediana"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- ICONO EDITAR -->
+        <ImageView
+            android:id="@+id/btnEditar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/btn_blue"
+            android:padding="4dp"
+            android:layout_marginStart="12dp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
