@@ -56,7 +56,8 @@ class ChatsConPaseadores : AppCompatActivity() {
         }
 
         navPerfil.setOnClickListener {
-            startActivity(Intent(this, PerfilPaseador::class.java))
+            val intent = Intent(this, MiPerfilActivity::class.java)
+            startActivity(intent)
         }
     }
 

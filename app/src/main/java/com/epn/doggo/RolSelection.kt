@@ -50,7 +50,7 @@ class RolSelection : AppCompatActivity() {
                 }
                 2 -> {
                     // Ir a PerfilPaseador
-                    startActivity(Intent(this, PerfilPaseador::class.java))
+                    startActivity(Intent(this, DashboardPaseador::class.java))
                 }
                 else -> {
                     Toast.makeText(this, "Selecciona un rol para continuar", Toast.LENGTH_SHORT).show()

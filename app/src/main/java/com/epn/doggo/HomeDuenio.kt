@@ -41,8 +41,8 @@ class HomeDuenio : AppCompatActivity() {
                     true
                 }
                 R.id.nav_chat -> {
-                    // val intent = Intent(this, ChatsActivity::class.java)
-                    // startActivity(intent)
+                    val intent = Intent(this, ChatsConPaseadores::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.nav_mascotas -> {
@@ -51,8 +51,8 @@ class HomeDuenio : AppCompatActivity() {
                     true
                 }
                 R.id.nav_perfil -> {
-                     //val intent = Intent(this, PerfilDuenio::class.java)
-                     //startActivity(intent)
+                    val intent = Intent(this, MiPerfilActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
