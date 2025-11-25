@@ -1,6 +1,8 @@
 package com.epn.doggo
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,10 +13,12 @@ class AniadirNuevaMascotaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_5_1aniadir_nueva_mascota)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val btnSavePet = findViewById<Button>(R.id.btnSavePet)
+
+        btnSavePet.setOnClickListener {
+            val intent = Intent(this, Activity_aniadir_mascotas::class.java)
+            startActivity(intent)
         }
     }
 }

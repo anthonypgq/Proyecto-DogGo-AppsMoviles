@@ -27,6 +27,12 @@
             android:name=".PerfilPaseador"
             android:exported="false" />
         <activity
+            android:name=".AniadirNuevaMascotaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_aniadir_mascotas"
+            android:exported="false" />
+        <activity
             android:name=".HomeDuenio"
             android:exported="false" />
         <activity

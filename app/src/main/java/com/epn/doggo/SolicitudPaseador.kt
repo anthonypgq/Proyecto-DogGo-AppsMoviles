@@ -2,6 +2,7 @@ package com.epn.doggo
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -66,7 +67,9 @@ class SolicitudPaseador : AppCompatActivity() {
 
         // --- Botón de Confirmación ---
         confirmarButton.setOnClickListener {
-            Toast.makeText(this, "Solicitud confirmada", Toast.LENGTH_SHORT).show()
+            
+            val intent = Intent(this, HomeDuenio::class.java)
+            startActivity(intent)
         }
 
         // --- Botón de Retroceso ---

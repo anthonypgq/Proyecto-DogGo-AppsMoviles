@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".PerfilPaseador">
 
     <ImageView
@@ -133,22 +134,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lbl8ExperienciaTitle">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip8PerrosGrandes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/chip8PerrosGrandes"
                     style="@style/Widget.MaterialComponents.Chip.Action"/>
+
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip8PrimerosAuxilios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/chip8PrimerosAuxilios"
                     style="@style/Widget.MaterialComponents.Chip.Action"/>
+
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip8Verificado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/chip8Verificado"
                     style="@style/Widget.MaterialComponents.Chip.Action"/>
 
             </com.google.android.material.chip.ChipGroup>
+
 
             <!-- Reseñas -->
             <TextView
