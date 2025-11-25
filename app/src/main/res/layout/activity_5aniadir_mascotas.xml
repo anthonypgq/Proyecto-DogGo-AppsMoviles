@@ -65,7 +65,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerMascotas"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                tools:listitem="@layout/list_item_pets"/>
             <!--
             val lista = listOf(
                 Pet("Luna", "Labrador", "2 años", "Mediana"),

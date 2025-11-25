@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DogGo">
         <activity
+            android:name=".MiPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChatIndividual"
             android:exported="false" />
         <activity

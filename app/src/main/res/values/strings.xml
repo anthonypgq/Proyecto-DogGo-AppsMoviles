@@ -28,7 +28,7 @@
     <string name="cb4Terms">Acepto los términos y condiciones</string>
     <string name="lbl4Steps">Pasos 1 de 2</string>
     <string name="btn4Next">Guardar y continuar</string>
-    <!-- 4 Perfil dueño creación -->
+    <!-- 5 Perfil dueño creación -->
     <string name="lbl5Title">Añade tus mascotas</string>
     <string name="lbl5Message">Añade al menos una mascota para continuar.\nPodras agregar mas despues</string>
     <string name="lbl5Steps">Pasos 2 de 2</string>
@@ -47,7 +47,16 @@
     <string name="inp51Comportamiento">Es amigable, le gusta correr...</string>
     <string name="inp51Edad">Ej: 2 años</string>
     <string name="btn51SavePet">Guardar Mascota</string>
-
+    <!-- 6 Mi perfil -->
+    <string name="lbl6Title">Mi Perfil</string>
+    <string name="lbl6Name">Nombre completo</string>
+    <string name="lbl6Telefono">Teléfono</string>
+    <string name="lbl6Direccion">Dirección</string>
+    <string name="lbl6Correo">Correo</string>
+    <string name="inp6Direccion">Av. Siempre Viva 123</string>
+    <string name="inp6Telefono">+593 987654321</string>
+    <string name="inp6Correo">carlos.mendez@gmail.com</string>
+    <string name="inp6Name">Carlos Méndez</string>
     <!-- 7 Home Dueño -->
     <string name="lbl7Buscar">Buscar paseadores...</string>
     <string name="btn7MejorCalificacion">Mejor calificación</string>
