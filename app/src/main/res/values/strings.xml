@@ -30,21 +30,24 @@
     <string name="btn4Next">Guardar y continuar</string>
     <!-- 5 Perfil dueño creación -->
     <string name="lbl5Title">Añade tus mascotas</string>
-    <string name="lbl5Message">Añade al menos una mascota para continuar.\nPodras agregar mas despues</string>
+    <string name="lbl5Message">Añade al menos una mascota para continuar.\nPodrás agregar más despues</string>
     <string name="lbl5Steps">Pasos 2 de 2</string>
     <string name="btn5Next">Finalizar y continuar</string>
-    <string name="btn5AddPet">+  Añadir otra mascota</string>
+    <string name="btn5AddPet">+  Añadir una mascota</string>
     <string name="lbl51Title">Añadir Nueva Mascota</string>
     <string name="lbl51Nombre">Nombre</string>
     <string name="lbl51Raza">Raza</string>
     <string name="lbl51Edad">Edad</string>
-    <string name="lbl51Peso">Añadir Nueva Mascota</string>
+    <string name="lbl51Peso">Peso</string>
     <string name="inp51Nombre">Ej: Luna</string>
     <string name="inp51Raza">Ej: Labrador</string>
-    <string name="inp51Peso">Ej: 25 kg</string>
+    <string name="inp51Peso">Ej: 25 kg (en kilogramos)</string>
     <string name="lbl51Tamanio">Tamaño</string>
+    <string name="rd51TamanioPequenio">Pequeño</string> <!-- RadioButton -->
+    <string name="rd51TamanioMediano">Mediano</string>
+    <string name="rd51TamanioGrande">Grande</string>
     <string name="lbl51Comportamiento">Comportamiento</string>
-    <string name="inp51Comportamiento">Es amigable, le gusta correr...</string>
+    <string name="inp51Comportamiento">Es amigable, le gusta correr…</string>
     <string name="inp51Edad">Ej: 2 años</string>
     <string name="btn51SavePet">Guardar Mascota</string>
     <!-- 6 Mi perfil -->
@@ -58,7 +61,7 @@
     <string name="inp6Correo">carlos.mendez@gmail.com</string>
     <string name="inp6Name">Carlos Méndez</string>
     <!-- 7 Home Dueño -->
-    <string name="lbl7Buscar">Buscar paseadores...</string>
+    <string name="lbl7Buscar">Buscar paseadores…</string>
     <string name="btn7MejorCalificacion">Mejor calificación</string>
     <string name="btn7MasCercanos">Más cercanos</string>
     <string name="btn7Precio">Precio</string>
@@ -93,7 +96,7 @@
     <string name="btn9Duracion1_5h">1.5 horas</string>
     <string name="btn9Duracion2h">2 horas</string>
     <string name="lbl9Notas">Notas especiales (opcional)</string>
-    <string name="lbl9NotasHint">Instrucciones adicionales para el paseador...</string>
+    <string name="lbl9NotasHint">Instrucciones adicionales para el paseador…</string>
     <string name="lbl9Total">Total:</string>
     <string name="lbl9TotalValue">$20</string>
     <string name="btn9Confirmar">Confirmar Solicitud</string>
@@ -123,7 +126,7 @@
 
     <!-- ============ Activity 11 Lista Chats ============ -->
     <string name="str11TituloMensajes">Mensajes</string>
-    <string name="str11HintBuscarConversaciones">Buscar conversaciones...</string>
+    <string name="str11HintBuscarConversaciones">Buscar conversaciones…</string>
 
     <string name="str11ChatAnaNombre">Ana Pérez</string>
     <string name="str11ChatAnaUltimo">¡Nos vemos a las 3 PM!</string>
@@ -157,5 +160,5 @@
     <string name="str12Hora2">2:46 PM</string>
     <string name="str12Hora3">2:47 PM</string>
 
-    <string name="str12HintEscribeMensaje">Escribe un mensaje...</string>
+    <string name="str12HintEscribeMensaje">Escribe un mensaje…</string>
 </resources>

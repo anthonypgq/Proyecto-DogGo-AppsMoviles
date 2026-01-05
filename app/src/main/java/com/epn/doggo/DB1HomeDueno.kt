@@ -41,7 +41,7 @@ class HomeDuenio : AppCompatActivity() {
                     true
                 }
                 R.id.nav_chat -> {
-                    val intent = Intent(this, ChatsConPaseadores::class.java)
+                    val intent = Intent(this, DB2ChatPaseador::class.java)
                     startActivity(intent)
                     true
                 }

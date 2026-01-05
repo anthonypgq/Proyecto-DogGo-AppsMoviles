@@ -18,7 +18,7 @@
             android:name=".ChatIndividual"
             android:exported="false" />
         <activity
-            android:name=".ChatsConPaseadores"
+            android:name=".DB2ChatPaseador"
             android:exported="false" />
         <activity
             android:name=".DashboardPaseador"
@@ -30,25 +30,25 @@
             android:name=".PerfilPaseador"
             android:exported="false" />
         <activity
-            android:name=".AniadirNuevaMascotaActivity"
+            android:name=".DA3AnadirNuevaMascota"
             android:exported="false" />
         <activity
-            android:name=".Activity_aniadir_mascotas"
+            android:name=".DA2AnadirMascotas"
             android:exported="false" />
         <activity
             android:name=".HomeDuenio"
             android:exported="false" />
         <activity
-            android:name=".PerfilDuenio"
+            android:name=".DA1PerfilDuenio"
             android:exported="false" />
         <activity
-            android:name=".RolSelection"
+            android:name=".C1SeleccionRol"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".B1Login"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".A1Bienvenida"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

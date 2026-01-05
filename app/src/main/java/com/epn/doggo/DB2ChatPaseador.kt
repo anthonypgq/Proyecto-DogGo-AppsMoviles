@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
-class ChatsConPaseadores : AppCompatActivity() {
+class DB2ChatPaseador : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

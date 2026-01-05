@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 
 
-class RolSelection : AppCompatActivity() {
+class C1SeleccionRol : AppCompatActivity() {
 
     private lateinit var cardOwner: CardView
     private lateinit var cardWalker: CardView
@@ -46,11 +46,12 @@ class RolSelection : AppCompatActivity() {
             when (rolSeleccionado) {
                 1 -> {
                     // Ir a PerfilDuenio
-                    startActivity(Intent(this, PerfilDuenio::class.java))
+                    startActivity(Intent(this, DA1PerfilDuenio::class.java))
                 }
                 2 -> {
                     // Ir a PerfilPaseador
-                    startActivity(Intent(this, DashboardPaseador::class.java))
+                    // startActivity(Intent(this, DashboardPaseador::class.java))
+                    Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     Toast.makeText(this, "Selecciona un rol para continuar", Toast.LENGTH_SHORT).show()

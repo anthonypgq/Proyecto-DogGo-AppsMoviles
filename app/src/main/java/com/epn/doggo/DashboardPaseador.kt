@@ -53,7 +53,7 @@ class DashboardPaseador : AppCompatActivity() {
         }
 
         navChat.setOnClickListener {
-            startActivity(Intent(this, ChatsConPaseadores::class.java))
+            startActivity(Intent(this, DB2ChatPaseador::class.java))
         }
 
         navPerfil.setOnClickListener {

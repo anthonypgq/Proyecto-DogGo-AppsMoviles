@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".PerfilDuenio">
+    tools:context=".DA1PerfilDuenio">
 
     <!-- CABECERA SUPERIOR -->
     <LinearLayout
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Añadir Nueva Mascota"
+            android:text="@string/lbl51Title"
             android:textSize="20sp"
             android:textColor="#000000" />
 
@@ -94,13 +94,15 @@
                 android:layout_marginTop="32dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputNamePet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputNamePet"
+                    android:id="@+id/txtNamePet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:hint="@string/inp51Nombre" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,13 +115,15 @@
                 android:layout_marginTop="16dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputRaza"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputRaza"
+                    android:id="@+id/txtRaza"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:hint="@string/inp51Raza" />
             </com.google.android.material.textfield.TextInputLayout>
             <!-- EDAD Y PESO -->
@@ -143,13 +147,15 @@
                         android:layout_marginTop="16dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputEdad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/inputEdad"
+                            android:id="@+id/txtEdad"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
                             android:hint="@string/inp51Edad" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -169,21 +175,24 @@
                         android:layout_marginTop="16dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputPeso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/inputPeso"
+                            android:id="@+id/txtPeso"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:inputType="numberDecimal"
                             android:hint="@string/inp51Peso" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
             </LinearLayout>
-            <!-- TAMAñIO -->
+            <!-- TAMAñO -->
             <TextView
-                android:text="Tamaño"
+                android:text="@string/lbl51Tamanio"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -199,7 +208,7 @@
                     android:id="@+id/tamanoPeq"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pequeño"
+                    android:text="@string/rd51TamanioPequenio"
                     android:button="@null"
                     android:background="@drawable/btn_pet_selector"
                     android:padding="12dp"
@@ -210,7 +219,7 @@
                     android:id="@+id/tamanoMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mediano"
+                    android:text="@string/rd51TamanioMediano"
                     android:button="@null"
                     android:background="@drawable/btn_pet_selector"
                     android:padding="12dp"
@@ -221,7 +230,7 @@
                     android:id="@+id/tamanoGra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Grande"
+                    android:text="@string/rd51TamanioGrande"
                     android:button="@null"
                     android:background="@drawable/btn_pet_selector"
                     android:padding="12dp"
@@ -238,15 +247,17 @@
                 android:layout_marginTop="16dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputComportamiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputComportamiento"
+                    android:id="@+id/txtComportamiento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/inp51Comportamiento"
-                    android:inputType="phone" />
+                    android:textColor="@color/black"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

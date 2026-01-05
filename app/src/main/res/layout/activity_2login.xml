@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Login">
+    tools:context=".B1Login">
 
     <!-- LOGO -->
     <ImageView
@@ -58,6 +58,7 @@
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="@string/inp2Email"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,6 +88,7 @@
             android:id="@+id/txtPsw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="@string/psd2Password"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>

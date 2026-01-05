@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".PerfilDuenio">
+    tools:context=".DA1PerfilDuenio">
 
     <!-- CABECERA SUPERIOR -->
     <LinearLayout
@@ -85,13 +85,15 @@
                 android:layout_marginTop="32dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputName"
+                    android:id="@+id/txtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:hint="@string/inp4Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,14 +106,16 @@
                 android:layout_marginTop="16dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputDirection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:startIconDrawable="@drawable/ic_location_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputDirection"
+                    android:id="@+id/txtDirection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:hint="@string/inp4Direction" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,13 +128,15 @@
                 android:layout_marginTop="16dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputPhone"
+                    android:id="@+id/txtPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:hint="@string/inp4Phone"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
