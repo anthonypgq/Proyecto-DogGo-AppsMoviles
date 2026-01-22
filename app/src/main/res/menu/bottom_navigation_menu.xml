@@ -10,7 +10,7 @@
         android:title="@string/lbl7Chat" />
     <item
         android:id="@+id/nav_mascotas"
-        android:icon="@drawable/ic_pets"
+        android:icon="@drawable/logo1"
         android:title="@string/lbl7Mascotas" />
     <item
         android:id="@+id/nav_perfil"

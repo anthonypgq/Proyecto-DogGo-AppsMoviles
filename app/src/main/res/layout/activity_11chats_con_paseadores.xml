@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lay11RootListaChats"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,11 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/str11TituloMensajes"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#1A1A1A"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +28,7 @@
         android:layout_height="46dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/txt11TituloMensajes"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,13 +73,13 @@
     </LinearLayout>
 
     <!-- Lista -->
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scr11ListaScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/lay11BarraBusqueda"
-        app:layout_constraintBottom_toTopOf="@id/lay11BottomNav"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -86,332 +87,38 @@
             android:id="@+id/lin11ContenedorChats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="8dp">
 
-            <!-- Item 1 -->
-            <LinearLayout
+            <!-- Usando el layout de item de paseador para los chats -->
+            <include
                 android:id="@+id/lin11ItemChat1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
-                android:gravity="center_vertical">
+                layout="@layout/list_item_paseador" />
 
-                <ImageView
-                    android:id="@+id/img11Avatar1"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/foto"
-                    android:scaleType="centerCrop" />
-
-                <LinearLayout
-                    android:id="@+id/lin11Textos1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="12dp">
-
-                    <TextView
-                        android:id="@+id/txt11Nombre1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str11ChatAnaNombre"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textColor="#1A1A1A" />
-
-                    <TextView
-                        android:id="@+id/txt11UltimoMensaje1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str11ChatAnaUltimo"
-                        android:textSize="14sp"
-                        android:textColor="#8A8A8A"
-                        android:layout_marginTop="4dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/lin11Derecha1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="end">
-
-                    <TextView
-                        android:id="@+id/txt11Hora1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str11ChatAnaHora"
-                        android:textSize="12sp"
-                        android:textColor="#8A8A8A" />
-
-                    <TextView
-                        android:id="@+id/txt11Badge1"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:text="@string/str11ChatAnaBadge"
-                        android:textSize="11sp"
-                        android:textColor="#FFFFFF"
-                        android:background="@android:drawable/btn_default"
-                        android:backgroundTint="#FF2D2D" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:id="@+id/vw11Div1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#EDEDED" />
-
-            <!-- Item 2 -->
-            <LinearLayout
+            <include
                 android:id="@+id/lin11ItemChat2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
-                android:gravity="center_vertical">
+                layout="@layout/list_item_paseador" />
 
-                <ImageView
-                    android:id="@+id/img11Avatar2"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@android:drawable/sym_def_app_icon"
-                    android:scaleType="centerCrop" />
-
-                <LinearLayout
-                    android:id="@+id/lin11Textos2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="12dp">
-
-                    <TextView
-                        android:id="@+id/txt11Nombre2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str11ChatCarlosNombre"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textColor="#1A1A1A" />
-
-                    <TextView
-                        android:id="@+id/txt11UltimoMensaje2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str11ChatCarlosUltimo"
-                        android:textSize="14sp"
-                        android:textColor="#8A8A8A"
-                        android:layout_marginTop="4dp" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/txt11Hora2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str11ChatCarlosHora"
-                    android:textSize="12sp"
-                    android:textColor="#8A8A8A" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/vw11Div2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#EDEDED" />
-
-            <!-- Item 3 -->
-            <LinearLayout
+            <include
                 android:id="@+id/lin11ItemChat3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/img11Avatar3"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@android:drawable/sym_def_app_icon"
-                    android:scaleType="centerCrop" />
-
-                <LinearLayout
-                    android:id="@+id/lin11Textos3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="12dp">
-
-                    <TextView
-                        android:id="@+id/txt11Nombre3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str11ChatMariaNombre"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textColor="#1A1A1A" />
-
-                    <TextView
-                        android:id="@+id/txt11UltimoMensaje3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str11ChatMariaUltimo"
-                        android:textSize="14sp"
-                        android:textColor="#8A8A8A"
-                        android:layout_marginTop="4dp" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/txt11Hora3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str11ChatMariaHora"
-                    android:textSize="12sp"
-                    android:textColor="#8A8A8A" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/vw11Div3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#EDEDED" />
+                layout="@layout/list_item_paseador" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom Navigation -->
-    <LinearLayout
-        android:id="@+id/lay11BottomNav"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:orientation="horizontal"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Inicio -->
-        <LinearLayout
-            android:id="@+id/lin11NavInicio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/img11NavInicio"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@android:drawable/ic_menu_sort_by_size"
-                app:tint="#9A9A9A" />
-
-            <TextView
-                android:id="@+id/txt11NavInicio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str11NavInicio"
-                android:textSize="12sp"
-                android:textColor="#9A9A9A"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Agenda -->
-        <LinearLayout
-            android:id="@+id/lin11NavAgenda"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/img11NavAgenda"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@android:drawable/ic_menu_my_calendar"
-                app:tint="#9A9A9A" />
-
-            <TextView
-                android:id="@+id/txt11NavAgenda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str11NavAgenda"
-                android:textSize="12sp"
-                android:textColor="#9A9A9A"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Chat (seleccionado) -->
-        <LinearLayout
-            android:id="@+id/lin11NavChat"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/img11NavChat"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@android:drawable/ic_dialog_email"
-                app:tint="#1E63FF" />
-
-            <TextView
-                android:id="@+id/txt11NavChat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str11NavChat"
-                android:textSize="12sp"
-                android:textColor="#1E63FF"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Perfil -->
-        <LinearLayout
-            android:id="@+id/lin11NavPerfil"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/img11NavPerfil"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@android:drawable/ic_menu_manage"
-                app:tint="#9A9A9A" />
-
-            <TextView
-                android:id="@+id/txt11NavPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str11NavPerfil"
-                android:textSize="12sp"
-                android:textColor="#9A9A9A"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
+        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

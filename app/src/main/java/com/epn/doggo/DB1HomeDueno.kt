@@ -46,8 +46,8 @@ class HomeDuenio : AppCompatActivity() {
                     true
                 }
                 R.id.nav_mascotas -> {
-                    // val intent = Intent(this, MascotasActivity::class.java)
-                    // startActivity(intent)
+                    val intent = Intent(this, MascotasActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.nav_perfil -> {
