@@ -2,11 +2,14 @@ package com.epn.doggo
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -55,6 +58,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_5aniadir_mascotas)
+        applyInsets()
 
         val btnFinishAndNext = findViewById<Button>(R.id.btnFinishAndNExt)
         val btnAddPet = findViewById<Button>(R.id.btnAddPet)
@@ -97,5 +101,38 @@ class DA2AnadirMascotas : AppCompatActivity() {
             @Suppress("DEPRECATION")
             overridePendingTransition(R.anim.slide_up, R.anim.stay)
         }
+    }
+
+    private fun applyInsets() {
+        val root = findViewById<View>(R.id.root)
+        val topHeader = findViewById<View>(R.id.topHeader)
+        val bottomSection = findViewById<View>(R.id.bottomSection)
+
+        val topPad = topHeader.paddingTop
+        val bottomPad = bottomSection.paddingBottom
+
+        ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
+            val sysBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            // Empuja el header hacia abajo (status bar)
+            topHeader.setPadding(
+                topHeader.paddingLeft,
+                topPad + sysBars.top,
+                topHeader.paddingRight,
+                topHeader.paddingBottom
+            )
+
+            // Empuja el bottom hacia arriba (navigation bar)
+            bottomSection.setPadding(
+                bottomSection.paddingLeft,
+                bottomSection.paddingTop,
+                bottomSection.paddingRight,
+                bottomPad + sysBars.bottom
+            )
+
+            insets
+        }
+
+        ViewCompat.requestApplyInsets(root)
     }
 }

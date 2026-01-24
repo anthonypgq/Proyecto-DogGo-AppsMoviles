@@ -2,19 +2,25 @@ package com.epn.doggo
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class DA1PerfilDuenio : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_4perfil_duenio)
+
+        applyInsets() // ✅ arregla título y botón
 
         val btnNext = findViewById<Button>(R.id.btnNext)
 
@@ -57,7 +63,6 @@ class DA1PerfilDuenio : AppCompatActivity() {
                 val intent = Intent(this, DA2AnadirMascotas::class.java)
                 startActivity(intent)
 
-                // Aplicar la animación personalizada
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                     overrideActivityTransition(
                         OVERRIDE_TRANSITION_OPEN,
@@ -70,5 +75,38 @@ class DA1PerfilDuenio : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun applyInsets() {
+        val root = findViewById<View>(R.id.root)
+        val topHeader = findViewById<View>(R.id.topHeader)
+        val bottomSection = findViewById<View>(R.id.bottomSection)
+
+        val topPad = topHeader.paddingTop
+        val bottomPad = bottomSection.paddingBottom
+
+        ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
+            val sysBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            // Empuja el header hacia abajo (status bar)
+            topHeader.setPadding(
+                topHeader.paddingLeft,
+                topPad + sysBars.top,
+                topHeader.paddingRight,
+                topHeader.paddingBottom
+            )
+
+            // Empuja el bottom hacia arriba (navigation bar)
+            bottomSection.setPadding(
+                bottomSection.paddingLeft,
+                bottomSection.paddingTop,
+                bottomSection.paddingRight,
+                bottomPad + sysBars.bottom
+            )
+
+            insets
+        }
+
+        ViewCompat.requestApplyInsets(root)
     }
 }
