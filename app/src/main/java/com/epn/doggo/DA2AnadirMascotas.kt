@@ -5,24 +5,48 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class DA2AnadirMascotas : AppCompatActivity() {
 
-    private val listaMascotas = mutableListOf<Pet>()
+    companion object {
+        const val EXTRA_NEW_PET = "EXTRA_NEW_PET"
+        const val EXTRA_PET_TO_EDIT = "EXTRA_PET_TO_EDIT"
+        const val EXTRA_UPDATED_PET = "EXTRA_UPDATED_PET"
+    }
 
+    private val listaMascotas = mutableListOf<Pet>()
     private lateinit var petAdapter: PetAdapter
 
+    private var nextPetId = 1
+
     private val getPetResult = registerForActivityResult(
-        androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
+        ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val pet = result.data?.getParcelableExtra<Pet>("EXTRA_NEW_PET")
-            pet?.let {
-                listaMascotas.add(it)
-                petAdapter.notifyDataSetChanged() // Refresca la lista visualmente
+        if (result.resultCode != RESULT_OK) return@registerForActivityResult
+
+        // A) Nuevo
+        val newPet = result.data?.getParcelableExtra<Pet>(EXTRA_NEW_PET)
+        if (newPet != null) {
+            listaMascotas.add(newPet)
+            petAdapter.notifyDataSetChanged()
+            // aseguramos que el siguiente id sea único
+            nextPetId = maxOf(nextPetId, newPet.id + 1)
+            return@registerForActivityResult
+        }
+
+        // B) Actualizado
+        val updatedPet = result.data?.getParcelableExtra<Pet>(EXTRA_UPDATED_PET)
+        if (updatedPet != null) {
+            val idx = listaMascotas.indexOfFirst { it.id == updatedPet.id }
+            if (idx != -1) {
+                listaMascotas[idx] = updatedPet
+                petAdapter.notifyItemChanged(idx)
+            } else {
+                petAdapter.notifyDataSetChanged()
             }
         }
     }
@@ -36,10 +60,11 @@ class DA2AnadirMascotas : AppCompatActivity() {
         val btnAddPet = findViewById<Button>(R.id.btnAddPet)
         val recycler = findViewById<RecyclerView>(R.id.recyclerMascotas)
 
-        // 2. Configurar el adaptador con la lista vacía
         petAdapter = PetAdapter(listaMascotas) { pet ->
+            // ✅ EDITAR: enviamos la mascota y esperamos resultado
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
-            startActivity(intent)
+            intent.putExtra(EXTRA_PET_TO_EDIT, pet)
+            getPetResult.launch(intent)
             aplicarAnimacionEntrada()
         }
 
@@ -47,13 +72,14 @@ class DA2AnadirMascotas : AppCompatActivity() {
         recycler.adapter = petAdapter
 
         btnAddPet.setOnClickListener {
+            // ✅ NUEVO: mandamos el nextPetId para crear con id único
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
-            getPetResult.launch(intent) // Usamos el launcher en lugar de startActivity
+            intent.putExtra("EXTRA_NEXT_ID", nextPetId)
+            getPetResult.launch(intent)
             aplicarAnimacionEntrada()
         }
 
         btnFinishAndNext.setOnClickListener {
-            // 3. LA VALIDACIÓN: Ahora sí impedirá el paso si no has agregado nada
             if (listaMascotas.isEmpty()) {
                 Toast.makeText(this, "Debe añadir al menos una mascota para registrarse", Toast.LENGTH_LONG).show()
             } else {

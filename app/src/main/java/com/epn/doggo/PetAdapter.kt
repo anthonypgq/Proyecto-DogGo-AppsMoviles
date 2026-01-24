@@ -1,26 +1,28 @@
 package com.epn.doggo
 
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Pet(
+    val id: Int,
     val nombre: String,
     val raza: String,
     val edad: Int,
     val tamanio: String,
-    val peso: Float
+    val peso: Float,
+    val comportamiento: String
 ) : Parcelable
 
 class PetAdapter(
     private val petList: List<Pet>,
-    private val onEditClick: (Pet) -> Unit // Función que se ejecuta al pulsar editar
+    private val onEditClick: (Pet) -> Unit
 ) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
 
     class PetViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,7 +39,7 @@ class PetAdapter(
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
         val pet = petList[position]
         holder.txtTitulo.text = pet.nombre
-        holder.txtDescripcion.text = "${pet.raza} - ${pet.edad.toString()} - ${pet.tamanio}"
+        holder.txtDescripcion.text = "${pet.raza} - ${pet.edad} - ${pet.tamanio}"
 
         holder.btnEditar.setOnClickListener { onEditClick(pet) }
     }

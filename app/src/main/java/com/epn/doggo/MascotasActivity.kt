@@ -14,15 +14,30 @@ class MascotasActivity : AppCompatActivity() {
 
     private lateinit var petAdapter: PetAdapter
     private val listaMascotas = mutableListOf<Pet>()
+    private var nextPetId = 1
 
-    // Launcher para recibir el resultado de DA3AnadirNuevaMascota
-    private val addPetLauncher = registerForActivityResult(
+    private val petLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val nuevaMascota = result.data?.getParcelableExtra<Pet>("EXTRA_NEW_PET")
-            nuevaMascota?.let {
-                listaMascotas.add(it)
+        if (result.resultCode != RESULT_OK) return@registerForActivityResult
+
+        // Nuevo
+        val nuevaMascota = result.data?.getParcelableExtra<Pet>(DA2AnadirMascotas.EXTRA_NEW_PET)
+        if (nuevaMascota != null) {
+            listaMascotas.add(nuevaMascota)
+            petAdapter.notifyDataSetChanged()
+            nextPetId = maxOf(nextPetId, nuevaMascota.id + 1)
+            return@registerForActivityResult
+        }
+
+        // Editada
+        val mascotaEditada = result.data?.getParcelableExtra<Pet>(DA2AnadirMascotas.EXTRA_UPDATED_PET)
+        if (mascotaEditada != null) {
+            val idx = listaMascotas.indexOfFirst { it.id == mascotaEditada.id }
+            if (idx != -1) {
+                listaMascotas[idx] = mascotaEditada
+                petAdapter.notifyItemChanged(idx)
+            } else {
                 petAdapter.notifyDataSetChanged()
             }
         }
@@ -37,31 +52,32 @@ class MascotasActivity : AppCompatActivity() {
         val recyclerMascotas = findViewById<RecyclerView>(R.id.recyclerMascotas)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        // Configurar selección actual en el menú
         bottomNavigationView.selectedItemId = R.id.nav_mascotas
 
-        // Datos iniciales de ejemplo
+        // Datos de ejemplo (actualizados con id + comportamiento)
         if (listaMascotas.isEmpty()) {
-            listaMascotas.add(Pet("Luna", "Labrador", 2, "Mediana", 20.0f))
-            listaMascotas.add(Pet("Max", "Pastor Alemán", 1, "Grande", 30.0f))
-            listaMascotas.add(Pet("Kiara", "Beagle", 3, "Pequeña", 10.0f))
+            listaMascotas.add(Pet(nextPetId++, "Luna", "Labrador", 2, "Mediana", 20.0f, "Tranquila"))
+            listaMascotas.add(Pet(nextPetId++, "Max", "Pastor Alemán", 1, "Grande", 30.0f, "Juguetón"))
+            listaMascotas.add(Pet(nextPetId++, "Kiara", "Beagle", 3, "Pequeña", 10.0f, "Sociable"))
         }
 
         petAdapter = PetAdapter(listaMascotas) { pet ->
-            // Acción opcional para editar
+            // ✅ EDITAR (precarga)
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
-            startActivity(intent)
+            intent.putExtra(DA2AnadirMascotas.EXTRA_PET_TO_EDIT, pet)
+            petLauncher.launch(intent)
         }
 
         recyclerMascotas.layoutManager = LinearLayoutManager(this)
         recyclerMascotas.adapter = petAdapter
 
         btnAddNewPet.setOnClickListener {
+            // ✅ NUEVO
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
-            addPetLauncher.launch(intent)
+            intent.putExtra("EXTRA_NEXT_ID", nextPetId)
+            petLauncher.launch(intent)
         }
 
-        // Configurar navegación
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> {
