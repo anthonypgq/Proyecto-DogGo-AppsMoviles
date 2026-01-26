@@ -3,62 +3,56 @@ package com.epn.doggo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DashboardPaseador : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_10dashboard_paseador)
 
-        // Botones Aceptar / Rechazar solicitud 1
-        val btnRechazar1 = findViewById<Button>(R.id.btn10Solicitud1Rechazar)
-        val btnAceptar1 = findViewById<Button>(R.id.btn10Solicitud1Aceptar)
+        // Referencias a los botones "Ver" de las solicitudes recientes
+        val btnVerSolicitud1 = findViewById<Button>(R.id.btn10Solicitud1Ver)
+        val btnVerSolicitud2 = findViewById<Button>(R.id.btn10Solicitud2Ver)
 
-        // Botones Aceptar / Rechazar solicitud 2
-        val btnRechazar2 = findViewById<Button>(R.id.btn10Solicitud2Rechazar)
-        val btnAceptar2 = findViewById<Button>(R.id.btn10Solicitud2Aceptar)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        btnRechazar1.setOnClickListener {
-            Toast.makeText(this, "Solicitud de Max rechazada", Toast.LENGTH_SHORT).show()
+        // Configurar selección actual en el menú
+        bottomNavigationView.selectedItemId = R.id.nav_inicio
+
+        // Navegación al detalle de la solicitud
+        btnVerSolicitud1.setOnClickListener {
+            val intent = Intent(this, SolicitudDePaseo::class.java)
+            startActivity(intent)
         }
 
-        btnAceptar1.setOnClickListener {
-            Toast.makeText(this, "Solicitud de Max aceptada", Toast.LENGTH_SHORT).show()
+        btnVerSolicitud2.setOnClickListener {
+            val intent = Intent(this, SolicitudDePaseo::class.java)
+            startActivity(intent)
         }
 
-        btnRechazar2.setOnClickListener {
-            Toast.makeText(this, "Solicitud de Luna rechazada", Toast.LENGTH_SHORT).show()
-        }
-
-        btnAceptar2.setOnClickListener {
-            Toast.makeText(this, "Solicitud de Luna aceptada", Toast.LENGTH_SHORT).show()
-        }
-
-        // Bottom Nav (navegación local simple)
-        val navInicio = findViewById<LinearLayout>(R.id.lin10NavInicio)
-        val navAgenda = findViewById<LinearLayout>(R.id.lin10NavAgenda)
-        val navChat = findViewById<LinearLayout>(R.id.lin10NavChat)
-        val navPerfil = findViewById<LinearLayout>(R.id.lin10NavPerfil)
-
-        navInicio.setOnClickListener {
-            // Ya estás en Inicio, no hace nada
-        }
-
-        navAgenda.setOnClickListener {
-            Toast.makeText(this, "Agenda (pendiente)", Toast.LENGTH_SHORT).show()
-            // startActivity(Intent(this, Agenda::class.java))
-        }
-
-        navChat.setOnClickListener {
-            startActivity(Intent(this, DB2ChatPaseador::class.java))
-        }
-
-        navPerfil.setOnClickListener {
-            Toast.makeText(this, "Perfil (pendiente)", Toast.LENGTH_SHORT).show()
-            // startActivity(Intent(this, Perfil::class.java))
+        // Configurar navegación del menú inferior
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_inicio -> true
+                R.id.nav_paseos -> {
+                    val intent = Intent(this, Paseos::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_chat -> {
+                    startActivity(Intent(this, ChatSolicitudesPaseador::class.java))
+                    true
+                }
+                R.id.nav_perfil -> {
+                    startActivity(Intent(this, MiPerfilPaseador::class.java))
+                    true
+                }
+                else -> false
+            }
         }
     }
 }

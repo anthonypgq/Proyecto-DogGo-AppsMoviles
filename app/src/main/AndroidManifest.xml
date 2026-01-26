@@ -12,6 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DogGo">
         <activity
+            android:name=".SolicitudDePaseo"
+            android:exported="false" />
+        <activity
+            android:name=".ChatSolicitudesPaseador"
+            android:exported="false" />
+        <activity
+            android:name=".MiPerfilPaseador"
+            android:exported="false" />
+        <activity
+            android:name=".Paseos"
+            android:exported="false" />
+        <activity
+            android:name=".DA2HorariosPaseador"
+            android:exported="false" />
+        <activity
+            android:name=".DA1PerfilPaseador"
+            android:exported="false" />
+        <activity
             android:name=".MascotasActivity"
             android:exported="false" />
         <activity

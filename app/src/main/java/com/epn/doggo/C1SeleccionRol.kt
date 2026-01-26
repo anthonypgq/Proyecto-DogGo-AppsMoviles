@@ -50,8 +50,7 @@ class C1SeleccionRol : AppCompatActivity() {
                 }
                 2 -> {
                     // Ir a PerfilPaseador
-                    // startActivity(Intent(this, DashboardPaseador::class.java))
-                    Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, DA1PerfilPaseador::class.java))
                 }
                 else -> {
                     Toast.makeText(this, "Selecciona un rol para continuar", Toast.LENGTH_SHORT).show()
