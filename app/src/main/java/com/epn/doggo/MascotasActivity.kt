@@ -3,6 +3,7 @@ package com.epn.doggo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,6 @@ class MascotasActivity : AppCompatActivity() {
 
     private lateinit var petAdapter: PetAdapter
     private val listaMascotas = mutableListOf<Pet>()
-    private var nextPetId = 1
 
     private val petLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -26,7 +26,6 @@ class MascotasActivity : AppCompatActivity() {
         if (nuevaMascota != null) {
             listaMascotas.add(nuevaMascota)
             petAdapter.notifyDataSetChanged()
-            nextPetId = maxOf(nextPetId, nuevaMascota.id + 1)
             return@registerForActivityResult
         }
 
@@ -42,6 +41,7 @@ class MascotasActivity : AppCompatActivity() {
             }
         }
     }
+    private lateinit var duenoId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,13 +52,21 @@ class MascotasActivity : AppCompatActivity() {
         val recyclerMascotas = findViewById<RecyclerView>(R.id.recyclerMascotas)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
+        // ID DEL USUARIO EN USO
+        duenoId = intent.getStringExtra("usuario_id")
+            ?: run {
+                Toast.makeText(this, "Error: usuario no identificado", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+
         bottomNavigationView.selectedItemId = R.id.nav_mascotas
 
         // Datos de ejemplo (actualizados con id + comportamiento)
         if (listaMascotas.isEmpty()) {
-            listaMascotas.add(Pet(nextPetId++, "Luna", "Labrador", 2, "Mediana", 20.0f, "Tranquila"))
-            listaMascotas.add(Pet(nextPetId++, "Max", "Pastor Alemán", 1, "Grande", 30.0f, "Juguetón"))
-            listaMascotas.add(Pet(nextPetId++, "Kiara", "Beagle", 3, "Pequeña", 10.0f, "Sociable"))
+            listaMascotas.add(Pet("1","1", "Luna", "Labrador", 2, 20.0f, "Mediana", "Tranquila"))
+            listaMascotas.add(Pet("2","2", "Max", "Pastor Alemán", 1, 30.0f, "Grande", "Juguetón"))
+            listaMascotas.add(Pet("3","3", "Kiara", "Beagle", 3, 10.0f, "Pequeña", "Sociable"))
         }
 
         petAdapter = PetAdapter(listaMascotas) { pet ->
@@ -74,25 +82,31 @@ class MascotasActivity : AppCompatActivity() {
         btnAddNewPet.setOnClickListener {
             // ✅ NUEVO
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
-            intent.putExtra("EXTRA_NEXT_ID", nextPetId)
+            intent.putExtra("usuario_id", duenoId)
             petLauncher.launch(intent)
         }
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> {
-                    startActivity(Intent(this, HomeDuenio::class.java))
+                    val intent = Intent(this, HomeDuenio::class.java)
+                    intent.putExtra("usuario_id", duenoId)
+                    startActivity(intent)
                     finish()
                     true
                 }
                 R.id.nav_chat -> {
-                    startActivity(Intent(this, DB2ChatPaseador::class.java))
+                    val intent = Intent(this, DB2ChatPaseador::class.java)
+                    intent.putExtra("usuario_id", duenoId)
+                    startActivity(intent)
                     finish()
                     true
                 }
                 R.id.nav_mascotas -> true
                 R.id.nav_perfil -> {
-                    startActivity(Intent(this, MiPerfilActivity::class.java))
+                    val intent = Intent(this, MiPerfilActivity::class.java)
+                    intent.putExtra("usuario_id", duenoId)
+                    startActivity(intent)
                     finish()
                     true
                 }

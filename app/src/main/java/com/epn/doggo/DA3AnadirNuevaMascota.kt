@@ -15,8 +15,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlin.String
 
 class DA3AnadirNuevaMascota : AppCompatActivity() {
+
+    private lateinit var duenoId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,14 @@ class DA3AnadirNuevaMascota : AppCompatActivity() {
         val isEditing = petToEdit != null
 
         // ID para nuevos
-        val nextId = intent.getIntExtra("EXTRA_NEXT_ID", -1)
+        // val nextId = intent.getIntExtra("EXTRA_NEXT_ID", -1)
+        // OBETENCION DEL DUENO ID
+        duenoId = intent.getStringExtra("usuario_id")
+            ?: run {
+                Toast.makeText(this, "Error: dueño no encontrado", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
 
         if (isEditing) {
             txtTitulo.text = "Editar Mascota"
@@ -61,7 +71,7 @@ class DA3AnadirNuevaMascota : AppCompatActivity() {
             // Marcar tamaño
             for (i in 0 until rgTamano.childCount) {
                 val rb = rgTamano.getChildAt(i) as? RadioButton ?: continue
-                if (rb.text.toString().equals(petToEdit.tamanio, ignoreCase = true)) {
+                if (rb.text.toString().equals(petToEdit.tamano, ignoreCase = true)) {
                     rgTamano.check(rb.id)
                     break
                 }
@@ -81,6 +91,11 @@ class DA3AnadirNuevaMascota : AppCompatActivity() {
             val pesoStr = txtPeso.text?.toString().orEmpty().trim()
             val comportamiento = txtComportamiento.text?.toString().orEmpty().trim()
             val tamanoSelec = rgTamano.checkedRadioButtonId
+            if (tamanoSelec == -1) {
+                Toast.makeText(this, "Debes elegir el tamaño de tu mascota!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val tamano = findViewById<RadioButton>(tamanoSelec).text.toString()
 
             var isCorrect = true
             layoutNombre.error = null
@@ -103,34 +118,90 @@ class DA3AnadirNuevaMascota : AppCompatActivity() {
 
             val peso = pesoStr.toFloatOrNull() ?: 0f // si no ponen peso, queda 0
             if (!isCorrect) return@setOnClickListener
-
-            val tamano = findViewById<RadioButton>(tamanoSelec).text.toString()
-
-            val idFinal = if (isEditing) petToEdit!!.id else nextId
-            if (idFinal == -1) {
-                Toast.makeText(this, "Error interno: no se generó ID", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            val mascota = Pet(
-                id = idFinal,
+            // LLAMADO DE LA API
+            val request = RegisterPetRequest(
+                // id = if (isEditing) petToEdit!!.id else null,
+                dueno_id = duenoId,
                 nombre = nombre,
                 raza = raza,
-                edad = edad!!,
-                tamanio = tamano,
-                peso = peso,
+                edad = edadStr.toInt(),
+                peso = pesoStr.toFloat(),
+                tamano = tamano,
                 comportamiento = comportamiento
             )
+            ApiClient.api.registerPet(request)
+                .enqueue(object : retrofit2.Callback<RegisterPetResponse> {
+                    override fun onResponse(
+                        call: retrofit2.Call<RegisterPetResponse>,
+                        response: retrofit2.Response<RegisterPetResponse>
+                    ) {
+                        if (response.isSuccessful && response.body() != null) {
 
-            val resultIntent = Intent()
-            if (isEditing) {
-                resultIntent.putExtra(DA2AnadirMascotas.EXTRA_UPDATED_PET, mascota)
-            } else {
-                resultIntent.putExtra(DA2AnadirMascotas.EXTRA_NEW_PET, mascota)
-            }
+                            val petApi = response.body()!!.data
 
-            setResult(RESULT_OK, resultIntent)
-            finish()
+                            // Convertimos a tu modelo local (si lo sigues usando)
+                            val mascota = Pet(
+                                id = petApi.id,
+                                dueno_id = petApi.dueno_id,
+                                nombre = petApi.nombre,
+                                raza = petApi.raza,
+                                edad = petApi.edad,
+                                tamano = petApi.tamano,
+                                peso = petApi.peso,
+                                comportamiento = petApi.comportamiento
+                            )
+
+                            val resultIntent = Intent()
+                            if (isEditing) {
+                                resultIntent.putExtra(DA2AnadirMascotas.EXTRA_UPDATED_PET, mascota)
+                            } else {
+                                resultIntent.putExtra(DA2AnadirMascotas.EXTRA_NEW_PET, mascota)
+                            }
+
+                            setResult(RESULT_OK, resultIntent)
+                            finish()
+
+                        } else {
+                            Toast.makeText(
+                                this@DA3AnadirNuevaMascota,
+                                "Error al registrar mascota",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    override fun onFailure(call: retrofit2.Call<RegisterPetResponse>, t: Throwable) {
+                        Toast.makeText(
+                            this@DA3AnadirNuevaMascota,
+                            "No se pudo conectar al servidor",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
+            // FINALIZA LLAMADO DE LA API
+            /////////////////////////////////////////
+//            val tamano = findViewById<RadioButton>(tamanoSelec).text.toString()
+//            val idFinal = if (isEditing) petToEdit!!.id else nextId
+//            if (idFinal == -1) {
+//                Toast.makeText(this, "Error interno: no se generó ID", Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
+//            val mascota = Pet(
+//                id = idFinal,
+//                nombre = nombre,
+//                raza = raza,
+//                edad = edad!!,
+//                tamanio = tamano,
+//                peso = peso,
+//                comportamiento = comportamiento
+//            )
+//            val resultIntent = Intent()
+//            if (isEditing) {
+//                resultIntent.putExtra(DA2AnadirMascotas.EXTRA_UPDATED_PET, mascota)
+//            } else {
+//                resultIntent.putExtra(DA2AnadirMascotas.EXTRA_NEW_PET, mascota)
+//            }
+//            setResult(RESULT_OK, resultIntent)
+//            finish()
         }
     }
 

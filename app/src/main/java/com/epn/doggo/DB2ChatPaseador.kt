@@ -4,16 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DB2ChatPaseador : AppCompatActivity() {
 
+    private lateinit var duenoId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_11chats_con_paseadores)
+
+        duenoId = intent.getStringExtra("usuario_id")
+            ?: run {
+                Toast.makeText(this, "Error: usuario no identificado", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
 
         // Referencias a los items incluidos (usando los IDs definidos en el include)
         val item1 = findViewById<View>(R.id.lin11ItemChat1)
@@ -42,18 +51,24 @@ class DB2ChatPaseador : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> {
-                    startActivity(Intent(this, HomeDuenio::class.java))
+                    val intent = Intent(this, HomeDuenio::class.java)
+                    intent.putExtra("usuario_id", duenoId)
+                    startActivity(intent)
                     finish()
                     true
                 }
                 R.id.nav_chat -> true
                 R.id.nav_mascotas -> {
-                    startActivity(Intent(this, MascotasActivity::class.java))
+                    val intent = Intent(this, MascotasActivity::class.java)
+                    intent.putExtra("usuario_id", duenoId)
+                    startActivity(intent)
                     finish()
                     true
                 }
                 R.id.nav_perfil -> {
-                    startActivity(Intent(this, MiPerfilActivity::class.java))
+                    val intent = Intent(this, MiPerfilActivity::class.java)
+                    intent.putExtra("usuario_id", duenoId)
+                    startActivity(intent)
                     finish()
                     true
                 }

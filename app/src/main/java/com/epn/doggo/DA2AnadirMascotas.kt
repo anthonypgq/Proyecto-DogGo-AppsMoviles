@@ -24,7 +24,8 @@ class DA2AnadirMascotas : AppCompatActivity() {
     private val listaMascotas = mutableListOf<Pet>()
     private lateinit var petAdapter: PetAdapter
 
-    private var nextPetId = 1
+    //private var nextPetId = 1
+    private lateinit var duenoId: String
 
     private val getPetResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -37,7 +38,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
             listaMascotas.add(newPet)
             petAdapter.notifyDataSetChanged()
             // aseguramos que el siguiente id sea único
-            nextPetId = maxOf(nextPetId, newPet.id + 1)
+            //nextPetId = maxOf(nextPetId, newPet.id + 1)
             return@registerForActivityResult
         }
 
@@ -63,10 +64,18 @@ class DA2AnadirMascotas : AppCompatActivity() {
         val btnFinishAndNext = findViewById<Button>(R.id.btnFinishAndNExt)
         val btnAddPet = findViewById<Button>(R.id.btnAddPet)
         val recycler = findViewById<RecyclerView>(R.id.recyclerMascotas)
+        // OBETENCION DEL DUENO ID
+        duenoId = intent.getStringExtra("usuario_id")
+            ?: run {
+                Toast.makeText(this, "Error: usuario no identificado", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
 
         petAdapter = PetAdapter(listaMascotas) { pet ->
             // ✅ EDITAR: enviamos la mascota y esperamos resultado
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
+            intent.putExtra("usuario_id", duenoId)
             intent.putExtra(EXTRA_PET_TO_EDIT, pet)
             getPetResult.launch(intent)
             aplicarAnimacionEntrada()
@@ -78,7 +87,8 @@ class DA2AnadirMascotas : AppCompatActivity() {
         btnAddPet.setOnClickListener {
             // ✅ NUEVO: mandamos el nextPetId para crear con id único
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
-            intent.putExtra("EXTRA_NEXT_ID", nextPetId)
+            //intent.putExtra("EXTRA_NEXT_ID", nextPetId)
+            intent.putExtra("usuario_id", duenoId)
             getPetResult.launch(intent)
             aplicarAnimacionEntrada()
         }
@@ -88,6 +98,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
                 Toast.makeText(this, "Debe añadir al menos una mascota para registrarse", Toast.LENGTH_LONG).show()
             } else {
                 val intent = Intent(this, HomeDuenio::class.java)
+                intent.putExtra("usuario_id", duenoId)
                 startActivity(intent)
                 aplicarAnimacionEntrada()
             }

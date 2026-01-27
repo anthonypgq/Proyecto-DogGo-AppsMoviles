@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // Data class para representar a un paseador
 data class Paseador(val nombre: String, val rating: String, val paseos: String, val precio: String, val distancia: String)
+private lateinit var duenoId: String
 
 class HomeDuenio : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +23,14 @@ class HomeDuenio : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // ID DEL USUARIO EN USO
+        duenoId = intent.getStringExtra("usuario_id")
+            ?: run {
+                Toast.makeText(this, "Error: usuario no identificado", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
 
         // Datos de ejemplo
         val paseadores = listOf(
@@ -42,16 +52,19 @@ class HomeDuenio : AppCompatActivity() {
                 }
                 R.id.nav_chat -> {
                     val intent = Intent(this, DB2ChatPaseador::class.java)
+                    intent.putExtra("usuario_id", duenoId)
                     startActivity(intent)
                     true
                 }
                 R.id.nav_mascotas -> {
                     val intent = Intent(this, MascotasActivity::class.java)
+                    intent.putExtra("usuario_id", duenoId)
                     startActivity(intent)
                     true
                 }
                 R.id.nav_perfil -> {
                     val intent = Intent(this, MiPerfilActivity::class.java)
+                    intent.putExtra("usuario_id", duenoId)
                     startActivity(intent)
                     true
                 }

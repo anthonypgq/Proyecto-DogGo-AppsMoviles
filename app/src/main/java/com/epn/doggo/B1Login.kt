@@ -29,20 +29,24 @@ class B1Login : AppCompatActivity() {
             layoutEmail.error = null
             layoutPsw.error = null
 
+            // LLAMADO DE LA API
             val request = LoginRequest(
                 email = user,
                 contrasena = password
             )
 
             ApiClient.api.login(request)
-                .enqueue(object : Callback<Void> {
+                .enqueue(object : Callback<LoginResponse> {
                     override fun onResponse(
-                        call: Call<Void>,
-                        response: Response<Void>
+                        call: Call<LoginResponse>,
+                        response: Response<LoginResponse>
                     ) {
                         if (response.isSuccessful) {
                             // LOGIN ACEPTADO POR LA API
+                            val userApi = response.body()!!.data
+                            val duenoId = userApi.id
                             val intent = Intent(this@B1Login, HomeDuenio::class.java)
+                            intent.putExtra("usuario_id", duenoId)
                             startActivity(intent)
                             finishAffinity()
                         } else {
@@ -51,10 +55,11 @@ class B1Login : AppCompatActivity() {
                             layoutPsw.error = "Credenciales incorrectas"
                         }
                     }
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         layoutEmail.error = "No se pudo conectar con el servidor"
                     }
                 })
+            // FINALIZA LLAMADO DE API
 
 //            if (user == "hola@hola.com" && password == "123") {
 //                val intent = Intent(this, HomeDuenio::class.java)

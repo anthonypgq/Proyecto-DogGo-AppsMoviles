@@ -13,6 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DA1PerfilDuenio : AppCompatActivity() {
 
@@ -87,30 +90,56 @@ class DA1PerfilDuenio : AppCompatActivity() {
                 isCorrect = false
             }
 
+            // LLAMADO DE LA API
             if (isCorrect) {
-                val intent = Intent(this, DA2AnadirMascotas::class.java)
+                val request = RegisterRequest(
+                    email = email,
+                    contrasena = password,
+                    nombre_completo = fullName,
+                    telefono = phone,
+                    direccion = direction,
+                    rol = "dueño",
+                    biografia = "",
+                    tarifa_hora = 0,
+                    zona_servicio = ""
+                )
 
-                // Extras alineados a tu API (pydantic)
-                intent.putExtra("rol", "dueño")
-                intent.putExtra("nombre_completo", fullName)
-                intent.putExtra("email", email)
-                intent.putExtra("contrasena", password)
-                intent.putExtra("direccion", direction)
-                intent.putExtra("telefono", phone)
+                ApiClient.api.register(request)
+                    .enqueue(object : Callback<RegisterResponse> {
 
-                startActivity(intent)
+                        override fun onResponse(
+                            call: Call<RegisterResponse>,
+                            response: Response<RegisterResponse>
+                        ) {
+                            if (response.isSuccessful && response.body() != null) {
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                    overrideActivityTransition(
-                        OVERRIDE_TRANSITION_OPEN,
-                        R.anim.slide_up,
-                        R.anim.stay
-                    )
-                } else {
-                    @Suppress("DEPRECATION")
-                    overridePendingTransition(R.anim.slide_up, R.anim.stay)
-                }
+                                val duenoId = response.body()!!.data
+
+                                val intent = Intent(this@DA1PerfilDuenio,DA2AnadirMascotas::class.java)
+                                // ENVIO DE ID A LAS ORAS ACTIVIDADES
+                                intent.putExtra("usuario_id", duenoId)
+                                // CAMBIO A LA SIGUIENTE ACTIVIDAD
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this@DA1PerfilDuenio,
+                                    "Error al registrar usuario",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                            Toast.makeText(
+                                this@DA1PerfilDuenio,
+                                "No se pudo conectar con el servidor",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    })
             }
+            // FINALIZA LLAMADO DE LA API
         }
     }
 

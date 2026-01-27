@@ -11,12 +11,13 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Pet(
-    val id: Int,
+    val id: String,
+    val dueno_id: String,
     val nombre: String,
     val raza: String,
     val edad: Int,
-    val tamanio: String,
     val peso: Float,
+    val tamano: String,
     val comportamiento: String
 ) : Parcelable
 
@@ -31,6 +32,7 @@ class PetAdapter(
         val btnEditar: ImageView = view.findViewById(R.id.btnEditar)
     }
 
+    // Get Mascotas
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return PetViewHolder(layoutInflater.inflate(R.layout.list_item_pets, parent, false))
@@ -39,7 +41,7 @@ class PetAdapter(
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
         val pet = petList[position]
         holder.txtTitulo.text = pet.nombre
-        holder.txtDescripcion.text = "${pet.raza} - ${pet.edad} - ${pet.tamanio}"
+        holder.txtDescripcion.text = "${pet.raza} - ${pet.edad} - ${pet.tamano}"
 
         holder.btnEditar.setOnClickListener { onEditClick(pet) }
     }
