@@ -34,14 +34,12 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp">
 
-                <!-- Placeholder de círculo gris -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rounded_image_mask"
                     android:backgroundTint="#F2F2F2" />
 
-                <!-- Icono de cámara central -->
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -49,7 +47,6 @@
                     android:src="@android:drawable/ic_menu_camera"
                     app:tint="#9E9E9E" />
 
-                <!-- Botón azul de cámara flotante -->
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -79,6 +76,82 @@
                 android:hint="Tu nombre"
                 android:paddingHorizontal="16dp"
                 android:inputType="textPersonName" />
+
+            <!-- Email -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Correo electrónico"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_background_rounded"
+                android:hint="tuemail@ejemplo.com"
+                android:paddingHorizontal="16dp"
+                android:inputType="textEmailAddress" />
+
+            <!-- Password -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Contraseña"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_background_rounded"
+                android:hint="••••••••"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPassword" />
+
+            <!-- Phone -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Teléfono"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_background_rounded"
+                android:hint="0999999999"
+                android:paddingHorizontal="16dp"
+                android:inputType="phone" />
+
+            <!-- Address -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Dirección"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_background_rounded"
+                android:hint="Calle principal y secundaria"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPostalAddress" />
 
             <!-- Biografía -->
             <TextView
