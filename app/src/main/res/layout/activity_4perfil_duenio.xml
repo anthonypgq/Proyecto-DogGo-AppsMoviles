@@ -32,8 +32,6 @@
             android:textColor="@color/black" />
     </LinearLayout>
 
-
-
     <!-- CONTENIDO CON SCROLL-->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollContent"
@@ -83,7 +81,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lbl4Name"
                 android:textColor="@color/black"
-                android:layout_marginTop="32dp" />
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputName"
@@ -98,13 +97,62 @@
                     android:hint="@string/inp4Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- EMAIL -->
+            <TextView
+                android:id="@+id/lblEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo electrónico"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:hint="tuemail@ejemplo.com"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- CONTRASEÑA -->
+            <TextView
+                android:id="@+id/lblPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contraseña"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:hint="••••••••"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <!-- DIRECCIÓN -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl4Direction"
                 android:textColor="@color/black"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputDirection"
@@ -126,7 +174,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lbl4Phone"
                 android:textColor="@color/black"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputPhone"
@@ -152,8 +201,6 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 
     <!-- SECCIÓN INFERIOR -->
     <LinearLayout
