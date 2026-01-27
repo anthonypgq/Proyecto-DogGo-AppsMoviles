@@ -11,9 +11,17 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlin.random.Random
 
 // Data class para representar a un paseador
-data class Paseador(val nombre: String, val rating: String, val paseos: String, val precio: String, val distancia: String)
+data class Paseador(
+    val id: String,
+    val nombre: String,
+    val telefono: String,
+    val email: String,
+    val zona: String,
+    val tarifaHora: Double,
+    val biografia: String)
 private lateinit var duenoId: String
 
 class HomeDuenio : AppCompatActivity() {
@@ -32,16 +40,67 @@ class HomeDuenio : AppCompatActivity() {
                 return
             }
 
+        // LLAMADA AL API
+        ApiClient.api.getPaseadores()
+            .enqueue(object : retrofit2.Callback<GetPaseadoresResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<GetPaseadoresResponse>,
+                    response: retrofit2.Response<GetPaseadoresResponse>
+                ) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val responseApi = response.body()!!.data
+
+                        // Ejemplo: recorrerlos
+                        val paseadores = responseApi.map { apiPaseador ->
+                            Paseador(
+                                id = apiPaseador.id,
+                                nombre = apiPaseador.nombre_completo,
+                                telefono = apiPaseador.telefono,
+                                email = apiPaseador.email,
+                                zona = apiPaseador.paseadores.zona_servicio,
+                                tarifaHora = apiPaseador.paseadores.tarifa_hora,
+                                biografia = apiPaseador.paseadores.biografia
+                            )
+                        }
+
+                        // Configurar RecyclerView
+                        recyclerView.layoutManager = LinearLayoutManager(this@HomeDuenio)
+                        recyclerView.adapter = PaseadorAdapter(paseadores)
+
+                        // 👉 Aquí normalmente:
+                        // - setear RecyclerView
+                        // - pasar la lista al adapter
+                    } else {
+                        Toast.makeText(
+                            this@HomeDuenio,
+                            "Error al obtener paseadores",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                override fun onFailure(
+                    call: retrofit2.Call<GetPaseadoresResponse>,
+                    t: Throwable
+                ) {
+                    Toast.makeText(
+                        this@HomeDuenio,
+                        "No se pudo conectar al servidor",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        // FINALIZAR LLAMADA AL API
+
         // Datos de ejemplo
-        val paseadores = listOf(
-            Paseador("Carlos Rodríguez", "4.8", "15 paseos", "$20/hora", "0.8 km"),
-            Paseador("Maria González", "4.9", "127 paseos", "$25/hora", "1.2 km"),
-            Paseador("Ana Pérez", "4.7", "43 paseos", "$18/hora", "0.5 km")
-        )
+//        val paseadores = listOf(
+//            Paseador("Carlos Rodríguez", "4.8", "15 paseos", "$20/hora", "0.8 km"),
+//            Paseador("Maria González", "4.9", "127 paseos", "$25/hora", "1.2 km"),
+//            Paseador("Ana Pérez", "4.7", "43 paseos", "$18/hora", "0.5 km")
+//        )
 
         // Configurar RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = PaseadorAdapter(paseadores)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = PaseadorAdapter(paseadores)
 
         // Configurar BottomNavigationView
         bottomNavigationView.setOnItemSelectedListener { item ->
@@ -93,15 +152,16 @@ class PaseadorAdapter(private val paseadores: List<Paseador>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: PaseadorViewHolder, position: Int) {
         val paseador = paseadores[position]
         holder.walkerName.text = paseador.nombre
-        holder.walkerRating.text = paseador.rating
-        holder.walkerWalks.text = paseador.paseos
-        holder.walkerPrice.text = paseador.precio
-        holder.walkerDistance.text = paseador.distancia
+        holder.walkerRating.text = listOf(3, 3.5, 4, 4.5).random().toString()
+        holder.walkerWalks.text = Random.nextInt(2,15).toString() +  "paseos"
+        holder.walkerPrice.text = "$" + paseador.tarifaHora.toString() + "/hora"
+        holder.walkerDistance.text = "%.1f".format(Random.nextDouble(0.2, 2.0)) + " km"
 
         // Configurar el click listener para abrir el perfil del paseador
         holder.itemView.setOnClickListener {
             val context = it.context
             val intent = Intent(context, PerfilPaseador::class.java)
+            intent.putExtra("paseador_id", paseador.id)
             // Opcional: Pasar datos del paseador a la actividad de perfil
             // intent.putExtra("NOMBRE_PASEADOR", paseador.nombre)
             context.startActivity(intent)

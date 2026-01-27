@@ -1,11 +1,12 @@
 package com.epn.doggo
-data class GetUsuarioResponse(
+
+data class GetPaseadoresResponse(
     val status: Int,
     val message: String,
-    val data: UsuarioResponse
+    val data: List<PaseadorResponse>
 )
 
-data class UsuarioResponse(
+data class PaseadorResponse(
     val id: String,
     val email: String,
     val nombre_completo: String,
@@ -13,4 +14,9 @@ data class UsuarioResponse(
     val direccion: String,
     val rol: String,
     val paseadores: PaseadorInfo
+)
+data class PaseadorInfo(
+    val biografia: String,
+    val tarifa_hora: Double,
+    val zona_servicio: String
 )

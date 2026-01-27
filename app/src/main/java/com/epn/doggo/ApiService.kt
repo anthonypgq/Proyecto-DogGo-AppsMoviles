@@ -1,4 +1,5 @@
 
+import com.epn.doggo.GetPaseadoresResponse
 import com.epn.doggo.GetUsuarioResponse
 import com.epn.doggo.LoginRequest
 import com.epn.doggo.LoginResponse
@@ -25,9 +26,11 @@ interface ApiService {
     fun registerPet(@Body request: RegisterPetRequest): Call<RegisterPetResponse>
 
     @GET("usuario/{usuario_id}")
-    fun getUsuario(
-        @Path("usuario_id") usuarioId: String
-    ): Call<GetUsuarioResponse>
+    fun getUsuario(@Path("usuario_id") usuarioId: String): Call<GetUsuarioResponse>
+
+    @GET("usuario/")
+    fun getPaseadores(): Call<GetPaseadoresResponse>
+
 
 }
 
