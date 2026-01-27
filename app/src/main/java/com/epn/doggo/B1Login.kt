@@ -7,6 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class B1Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,14 +29,42 @@ class B1Login : AppCompatActivity() {
             layoutEmail.error = null
             layoutPsw.error = null
 
-            if (user == "hola@hola.com" && password == "123") {
-                val intent = Intent(this, HomeDuenio::class.java)
-                startActivity(intent)
-                finishAffinity()
-            } else {
-                layoutEmail.error = "Usuario incorrecto"
-                layoutPsw.error = "Contraseña incorrecta"
-            }
+            val request = LoginRequest(
+                email = user,
+                contrasena = password
+            )
+
+            ApiClient.api.login(request)
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(
+                        call: Call<Void>,
+                        response: Response<Void>
+                    ) {
+                        if (response.isSuccessful) {
+                            // LOGIN ACEPTADO POR LA API
+                            val intent = Intent(this@B1Login, HomeDuenio::class.java)
+                            startActivity(intent)
+                            finishAffinity()
+                        } else {
+                            // LOGIN RECHAZADO POR LA API
+                            layoutEmail.error = "Credenciales incorrectas"
+                            layoutPsw.error = "Credenciales incorrectas"
+                        }
+                    }
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        layoutEmail.error = "No se pudo conectar con el servidor"
+                    }
+                })
+
+//            if (user == "hola@hola.com" && password == "123") {
+//                val intent = Intent(this, HomeDuenio::class.java)
+//                startActivity(intent)
+//                finishAffinity()
+//            } else {
+//                layoutEmail.error = "Usuario incorrecto"
+//                layoutPsw.error = "Contraseña incorrecta"
+//            }
         }
     }
 }
+
