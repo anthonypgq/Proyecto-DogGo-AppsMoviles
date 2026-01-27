@@ -60,7 +60,7 @@
             android:name=".DA2AnadirMascotas"
             android:exported="false" />
         <activity
-            android:name=".HomeDuenio"
+            android:name=".DB1HomeDuenio"
             android:exported="false" />
         <activity
             android:name=".DA1PerfilDuenio"

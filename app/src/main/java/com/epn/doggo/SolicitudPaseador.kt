@@ -68,7 +68,7 @@ class SolicitudPaseador : AppCompatActivity() {
         // --- Botón de Confirmación ---
         confirmarButton.setOnClickListener {
             
-            val intent = Intent(this, HomeDuenio::class.java)
+            val intent = Intent(this, DB1HomeDuenio::class.java)
             startActivity(intent)
         }
 

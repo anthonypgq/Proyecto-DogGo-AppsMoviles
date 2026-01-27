@@ -109,10 +109,35 @@
                 android:layout_height="wrap_content"
                 app:singleSelection="true"
                 app:chipSpacingHorizontal="8dp">
-                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion30m" android:text="@string/btn9Duracion30m" style="@style/Widget.MaterialComponents.Chip.Choice"/>
-                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion1h" android:text="@string/btn9Duracion1h" style="@style/Widget.MaterialComponents.Chip.Choice" android:checked="true"/>
-                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion1_5h" android:text="@string/btn9Duracion1_5h" style="@style/Widget.MaterialComponents.Chip.Choice"/>
-                <com.google.android.material.chip.Chip android:id="@+id/btn9Duracion2h" android:text="@string/btn9Duracion2h" style="@style/Widget.MaterialComponents.Chip.Choice"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn9Duracion30m"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn9Duracion30m"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn9Duracion1h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn9Duracion1h"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:checked="true"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn9Duracion1_5h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn9Duracion1_5h"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn9Duracion2h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn9Duracion2h"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
             </com.google.android.material.chip.ChipGroup>
 
             <!-- Notas especiales -->

@@ -39,6 +39,13 @@ class PerfilPaseador : AppCompatActivity() {
                         valueBio.text = usuario.paseadores.biografia
                         valueNombre.text = usuario.nombre_completo
 
+                        backButton.setOnClickListener { finish() }
+
+                        solicitarButton.setOnClickListener {
+                            val intent = Intent(this@PerfilPaseador, SolicitudPaseador::class.java)
+                            startActivity(intent)
+                        }
+
                     } else {
                         Toast.makeText(
                             this@PerfilPaseador,
@@ -59,11 +66,6 @@ class PerfilPaseador : AppCompatActivity() {
                 }
             })
 
-        backButton.setOnClickListener { finish() }
 
-        solicitarButton.setOnClickListener {
-            val intent = Intent(this, SolicitudPaseador::class.java)
-            startActivity(intent)
-        }
     }
 }

@@ -97,7 +97,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
             if (listaMascotas.isEmpty()) {
                 Toast.makeText(this, "Debe añadir al menos una mascota para registrarse", Toast.LENGTH_LONG).show()
             } else {
-                val intent = Intent(this, HomeDuenio::class.java)
+                val intent = Intent(this, DB1HomeDuenio::class.java)
                 intent.putExtra("usuario_id", duenoId)
                 startActivity(intent)
                 aplicarAnimacionEntrada()

@@ -51,7 +51,7 @@ class DB2ChatPaseador : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> {
-                    val intent = Intent(this, HomeDuenio::class.java)
+                    val intent = Intent(this, DB1HomeDuenio::class.java)
                     intent.putExtra("usuario_id", duenoId)
                     startActivity(intent)
                     finish()

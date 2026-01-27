@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlin.random.Random
 
 // Data class para representar a un paseador
 data class Paseador(
@@ -24,7 +23,7 @@ data class Paseador(
     val biografia: String)
 private lateinit var duenoId: String
 
-class HomeDuenio : AppCompatActivity() {
+class DB1HomeDuenio : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_7home_duenio)
@@ -64,7 +63,7 @@ class HomeDuenio : AppCompatActivity() {
                         }
 
                         // Configurar RecyclerView
-                        recyclerView.layoutManager = LinearLayoutManager(this@HomeDuenio)
+                        recyclerView.layoutManager = LinearLayoutManager(this@DB1HomeDuenio)
                         recyclerView.adapter = PaseadorAdapter(paseadores)
 
                         // 👉 Aquí normalmente:
@@ -72,7 +71,7 @@ class HomeDuenio : AppCompatActivity() {
                         // - pasar la lista al adapter
                     } else {
                         Toast.makeText(
-                            this@HomeDuenio,
+                            this@DB1HomeDuenio,
                             "Error al obtener paseadores",
                             Toast.LENGTH_SHORT
                         ).show()
@@ -83,7 +82,7 @@ class HomeDuenio : AppCompatActivity() {
                     t: Throwable
                 ) {
                     Toast.makeText(
-                        this@HomeDuenio,
+                        this@DB1HomeDuenio,
                         "No se pudo conectar al servidor",
                         Toast.LENGTH_SHORT
                     ).show()

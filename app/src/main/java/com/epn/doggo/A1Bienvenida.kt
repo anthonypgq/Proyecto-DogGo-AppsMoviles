@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.epn.doggo.data.DbHelper
 
+
 class A1Bienvenida : AppCompatActivity() {
     private lateinit var dbHelper: DbHelper
 
@@ -20,8 +21,8 @@ class A1Bienvenida : AppCompatActivity() {
         dbHelper = DbHelper(this)
         val sessionUser = dbHelper.getUser()
         if (sessionUser != null) {
-            val intent = if (sessionUser.rol == "Dueño") {
-                Intent(this, DB1HomeDueno::class.java)
+            val intent = if (sessionUser.rol == "dueno") {
+                Intent(this, DB1HomeDuenio::class.java)
             } else {
                 Intent(this, DashboardPaseador::class.java)
             }
