@@ -152,10 +152,10 @@ class PaseadorAdapter(private val paseadores: List<Paseador>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: PaseadorViewHolder, position: Int) {
         val paseador = paseadores[position]
         holder.walkerName.text = paseador.nombre
-        holder.walkerRating.text = listOf(3, 3.5, 4, 4.5).random().toString()
-        holder.walkerWalks.text = Random.nextInt(2,15).toString() +  "paseos"
+        holder.walkerRating.text = "4"
+        holder.walkerWalks.text = "2 paseos"
         holder.walkerPrice.text = "$" + paseador.tarifaHora.toString() + "/hora"
-        holder.walkerDistance.text = "%.1f".format(Random.nextDouble(0.2, 2.0)) + " km"
+        holder.walkerDistance.text = "1.8 km"
 
         // Configurar el click listener para abrir el perfil del paseador
         holder.itemView.setOnClickListener {
