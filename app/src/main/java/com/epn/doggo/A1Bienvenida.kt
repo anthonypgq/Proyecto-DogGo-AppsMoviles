@@ -8,10 +8,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.epn.doggo.data.DbHelper
 
 class A1Bienvenida : AppCompatActivity() {
+    private lateinit var dbHelper: DbHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Verificar si hay una sesión activa antes de mostrar la bienvenida
+        dbHelper = DbHelper(this)
+        val sessionUser = dbHelper.getUser()
+        if (sessionUser != null) {
+            val intent = if (sessionUser.rol == "Dueño") {
+                Intent(this, DB1HomeDueno::class.java)
+            } else {
+                Intent(this, DashboardPaseador::class.java)
+            }
+            intent.putExtra("usuario_id", sessionUser.id)
+            startActivity(intent)
+            finish()
+            return
+        }
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         applyInsets()
