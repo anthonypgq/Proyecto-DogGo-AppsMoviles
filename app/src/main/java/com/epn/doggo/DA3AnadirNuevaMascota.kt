@@ -20,6 +20,7 @@ import kotlin.String
 class DA3AnadirNuevaMascota : AppCompatActivity() {
 
     private lateinit var duenoId: String
+    private lateinit var petId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +58,14 @@ class DA3AnadirNuevaMascota : AppCompatActivity() {
                 return
             }
 
+
         if (isEditing) {
+            petId = intent.getStringExtra("pet_id")
+                ?: run {
+                    Toast.makeText(this, "Error: Mascota no encontrado", Toast.LENGTH_LONG).show()
+                    finish()
+                    return
+                }
             txtTitulo.text = "Editar Mascota"
             btnSavePet.text = "Guardar cambios"
 

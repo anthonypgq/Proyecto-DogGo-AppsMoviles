@@ -21,7 +21,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
         const val EXTRA_UPDATED_PET = "EXTRA_UPDATED_PET"
     }
 
-    private val listaMascotas = mutableListOf<Pet>()
+    private val mascotas = mutableListOf<Pet>()
     private lateinit var petAdapter: PetAdapter
 
     //private var nextPetId = 1
@@ -35,7 +35,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
         // A) Nuevo
         val newPet = result.data?.getParcelableExtra<Pet>(EXTRA_NEW_PET)
         if (newPet != null) {
-            listaMascotas.add(newPet)
+            mascotas.add(newPet)
             petAdapter.notifyDataSetChanged()
             // aseguramos que el siguiente id sea único
             //nextPetId = maxOf(nextPetId, newPet.id + 1)
@@ -45,9 +45,9 @@ class DA2AnadirMascotas : AppCompatActivity() {
         // B) Actualizado
         val updatedPet = result.data?.getParcelableExtra<Pet>(EXTRA_UPDATED_PET)
         if (updatedPet != null) {
-            val idx = listaMascotas.indexOfFirst { it.id == updatedPet.id }
+            val idx = mascotas.indexOfFirst { it.id == updatedPet.id }
             if (idx != -1) {
-                listaMascotas[idx] = updatedPet
+                mascotas[idx] = updatedPet
                 petAdapter.notifyItemChanged(idx)
             } else {
                 petAdapter.notifyDataSetChanged()
@@ -72,7 +72,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
                 return
             }
 
-        petAdapter = PetAdapter(listaMascotas) { pet ->
+        petAdapter = PetAdapter(mascotas) { pet ->
             // ✅ EDITAR: enviamos la mascota y esperamos resultado
             val intent = Intent(this, DA3AnadirNuevaMascota::class.java)
             intent.putExtra("usuario_id", duenoId)
@@ -94,7 +94,7 @@ class DA2AnadirMascotas : AppCompatActivity() {
         }
 
         btnFinishAndNext.setOnClickListener {
-            if (listaMascotas.isEmpty()) {
+            if (mascotas.isEmpty()) {
                 Toast.makeText(this, "Debe añadir al menos una mascota para registrarse", Toast.LENGTH_LONG).show()
             } else {
                 val intent = Intent(this, DB1HomeDuenio::class.java)

@@ -90,17 +90,6 @@ class DB1HomeDuenio : AppCompatActivity() {
             })
         // FINALIZAR LLAMADA AL API
 
-        // Datos de ejemplo
-//        val paseadores = listOf(
-//            Paseador("Carlos Rodríguez", "4.8", "15 paseos", "$20/hora", "0.8 km"),
-//            Paseador("Maria González", "4.9", "127 paseos", "$25/hora", "1.2 km"),
-//            Paseador("Ana Pérez", "4.7", "43 paseos", "$18/hora", "0.5 km")
-//        )
-
-        // Configurar RecyclerView
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = PaseadorAdapter(paseadores)
-
         // Configurar BottomNavigationView
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -161,6 +150,7 @@ class PaseadorAdapter(private val paseadores: List<Paseador>) : RecyclerView.Ada
             val context = it.context
             val intent = Intent(context, PerfilPaseador::class.java)
             intent.putExtra("paseador_id", paseador.id)
+            intent.putExtra("usuario_id", duenoId)
             // Opcional: Pasar datos del paseador a la actividad de perfil
             // intent.putExtra("NOMBRE_PASEADOR", paseador.nombre)
             context.startActivity(intent)

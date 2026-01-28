@@ -3,10 +3,13 @@ import com.epn.doggo.GetPaseadoresResponse
 import com.epn.doggo.GetUsuarioResponse
 import com.epn.doggo.LoginRequest
 import com.epn.doggo.LoginResponse
+import com.epn.doggo.MascotasPorDuenoResponse
 import com.epn.doggo.RegisterPetRequest
 import com.epn.doggo.RegisterPetResponse
 import com.epn.doggo.RegisterRequest
 import com.epn.doggo.RegisterResponse
+import com.epn.doggo.SolicitarPaseoRequest
+import com.epn.doggo.SolicitarPaseoResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -31,6 +34,12 @@ interface ApiService {
     @GET("usuario/")
     fun getPaseadores(): Call<GetPaseadoresResponse>
 
+    @GET("mascota/dueno/{dueno_id}")
+    fun getMascotasPorDueno(@Path("dueno_id") duenoId: String): Call<MascotasPorDuenoResponse>
+
+
+    @POST("paseo/solicitar")
+    fun solicitarPaseo(@Body request: SolicitarPaseoRequest): Call<SolicitarPaseoResponse>
 
 }
 

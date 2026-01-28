@@ -21,10 +21,10 @@ class A1Bienvenida : AppCompatActivity() {
         dbHelper = DbHelper(this)
         val sessionUser = dbHelper.getUser()
         if (sessionUser != null) {
-            val intent = if (sessionUser.rol == "dueno") {
-                Intent(this, DB1HomeDuenio::class.java)
-            } else {
+            val intent = if (sessionUser.rol == "paseador") {
                 Intent(this, DashboardPaseador::class.java)
+            } else {
+                Intent(this, DB1HomeDuenio::class.java)
             }
             intent.putExtra("usuario_id", sessionUser.id)
             startActivity(intent)

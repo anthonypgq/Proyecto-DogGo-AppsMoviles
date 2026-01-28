@@ -20,14 +20,10 @@ data class Pet(
     val tamano: String,
     val comportamiento: String
 ) : Parcelable
-
-class PetAdapter(
-    private val petList: List<Pet>,
-    private val onEditClick: (Pet) -> Unit
-) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
+class PetAdapter(private val petList: List<Pet>, private val onEditClick: (Pet) -> Unit) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
 
     class PetViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val txtTitulo: TextView = view.findViewById(R.id.txtTitulo)
+        val txtNombre: TextView = view.findViewById(R.id.txtTitulo)
         val txtDescripcion: TextView = view.findViewById(R.id.txtDescripcion)
         val btnEditar: ImageView = view.findViewById(R.id.btnEditar)
     }
@@ -40,10 +36,12 @@ class PetAdapter(
 
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
         val pet = petList[position]
-        holder.txtTitulo.text = pet.nombre
+        holder.txtNombre.text = pet.nombre
         holder.txtDescripcion.text = "${pet.raza} - ${pet.edad} - ${pet.tamano}"
 
-        holder.btnEditar.setOnClickListener { onEditClick(pet) }
+        holder.btnEditar.setOnClickListener {
+            onEditClick(pet)
+        }
     }
 
     override fun getItemCount(): Int = petList.size

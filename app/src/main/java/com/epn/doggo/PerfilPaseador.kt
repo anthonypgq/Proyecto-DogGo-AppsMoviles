@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 private lateinit var PaseadorId: String
+private lateinit var duenoId: String
 
 class PerfilPaseador : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +18,12 @@ class PerfilPaseador : AppCompatActivity() {
 
         // ID DEL USUARIO EN USO
         PaseadorId = intent.getStringExtra("paseador_id")
+            ?: run {
+                Toast.makeText(this, "Error: usuario no identificado", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        duenoId = intent.getStringExtra("usuario_id")
             ?: run {
                 Toast.makeText(this, "Error: usuario no identificado", Toast.LENGTH_LONG).show()
                 finish()
@@ -43,6 +50,8 @@ class PerfilPaseador : AppCompatActivity() {
 
                         solicitarButton.setOnClickListener {
                             val intent = Intent(this@PerfilPaseador, SolicitudPaseador::class.java)
+                            intent.putExtra("paseador_id", PaseadorId)
+                            intent.putExtra("usuario_id", duenoId)
                             startActivity(intent)
                         }
 
