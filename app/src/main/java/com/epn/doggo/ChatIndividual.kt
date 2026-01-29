@@ -2,26 +2,44 @@ package com.epn.doggo
 
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.epn.doggo.data.ChatMessage
+import com.epn.doggo.data.DbHelper
+import com.epn.doggo.data.SocketManager
+import java.text.SimpleDateFormat
+import java.util.*
 
-class ChatIndividual : AppCompatActivity() {
+class ChatIndividual : AppCompatActivity(), SocketManager.MessageListener {
 
     private lateinit var txtNombreTop: TextView
     private lateinit var txtEstadoTop: TextView
     private lateinit var imgAtras: ImageView
 
     private lateinit var edtMensaje: EditText
-    private lateinit var btnEnviar: CardView
+    private lateinit var btnEnviar: View
     private lateinit var contenedorMensajes: LinearLayout
+    
+    private lateinit var dbHelper: DbHelper
+    private lateinit var socketManager: SocketManager
+    
+    private var myId: String = ""
+    private var otherId: String = ""
+    private var paseoId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_12chat_individual)
+
+        dbHelper = DbHelper(this)
+        myId = dbHelper.getUser()?.id ?: ""
+        
+        // Datos del intent
+        otherId = intent.getStringExtra("usuario_id") ?: ""
+        paseoId = intent.getStringExtra("paseo_id") ?: "default_id" // Necesario para la nueva estructura
 
         // Top bar
         txtNombreTop = findViewById(R.id.txt12NombreTop)
@@ -35,47 +53,71 @@ class ChatIndividual : AppCompatActivity() {
         // Contenedor mensajes
         contenedorMensajes = findViewById(R.id.lin12ContenedorMensajes)
 
-        // Recibir datos desde ListaChats
-        val nombre = intent.getStringExtra("ext11NombreChat")
-            ?: getString(R.string.str12NombreDefault)
-
-        val estado = intent.getStringExtra("ext11EstadoChat")
-            ?: getString(R.string.str12EstadoEnLinea)
-
-        txtNombreTop.text = nombre
-        txtEstadoTop.text = estado
+        txtNombreTop.text = intent.getStringExtra("ext11NombreChat") ?: "Chat"
+        txtEstadoTop.text = intent.getStringExtra("ext11EstadoChat") ?: "En línea"
 
         imgAtras.setOnClickListener { finish() }
+
+        // Inicializar Socket
+        socketManager = SocketManager(this)
+        if (myId.isNotEmpty()) {
+            socketManager.connect(myId)
+        }
 
         btnEnviar.setOnClickListener {
             val texto = edtMensaje.text.toString().trim()
             if (texto.isNotEmpty()) {
-                agregarMensajeDerecha(texto)
+                val message = ChatMessage(
+                    paseo_id = paseoId,
+                    emisor_id = myId,
+                    receptor_id = otherId,
+                    contenido = texto,
+                    isMine = true
+                )
+                socketManager.sendMessage(message)
+                agregarMensajeALaUI(message)
                 edtMensaje.setText("")
             }
         }
     }
 
-    /**
-     * Agrega una burbuja azul alineada a la derecha,
-     * consistente con el estilo de tu XML.
-     */
-    private fun agregarMensajeDerecha(mensaje: String) {
-        // Wrapper para mantener gravedad a la derecha
+    override fun onMessageReceived(message: ChatMessage) {
+        runOnUiThread {
+            // Verificamos que el mensaje sea para esta conversación específica
+            if (message.emisor_id == otherId && message.paseo_id == paseoId) {
+                agregarMensajeALaUI(message)
+            }
+        }
+    }
+
+    override fun onConnectionError(error: String) {
+        runOnUiThread {
+            // Manejo de errores silencioso
+        }
+    }
+
+    private fun agregarMensajeALaUI(message: ChatMessage) {
+        if (message.isMine) {
+            agregarBurbuja(message.contenido, Gravity.END, 0xFF0D47A1.toInt(), 0xFFFFFFFF.toInt(), 0xFFB3E5FC.toInt())
+        } else {
+            agregarBurbuja(message.contenido, Gravity.START, 0xFFFFFFFF.toInt(), 0xFF1A1A1A.toInt(), 0xFF8A8A8A.toInt())
+        }
+    }
+
+    private fun agregarBurbuja(texto: String, gravedad: Int, colorFondo: Int, colorTexto: Int, colorHora: Int) {
         val wrapper = LinearLayout(this).apply {
             layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-            ).also { it.topMargin = dp(10) }
+            ).also { it.topMargin = dp(12) }
             orientation = LinearLayout.VERTICAL
-            gravity = Gravity.END
+            gravity = gravedad
         }
 
-        // Card azul
         val card = CardView(this).apply {
-            radius = dp(14).toFloat()
-            cardElevation = 0f
-            setCardBackgroundColor(0xFF1E63FF.toInt())
+            radius = dp(16).toFloat()
+            cardElevation = dp(2).toFloat()
+            setCardBackgroundColor(colorFondo)
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -88,16 +130,17 @@ class ChatIndividual : AppCompatActivity() {
         }
 
         val txtMsg = TextView(this).apply {
-            text = mensaje
+            text = texto
             textSize = 15f
-            setTextColor(0xFFFFFFFF.toInt())
+            setTextColor(colorTexto)
         }
 
         val txtHora = TextView(this).apply {
-            text = "Ahora"
-            textSize = 12f
-            setTextColor(0xFFDCE6FF.toInt())
-            setPadding(0, dp(6), 0, 0)
+            text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+            textSize = 11f
+            setTextColor(colorHora)
+            gravity = Gravity.END
+            setPadding(0, dp(4), 0, 0)
         }
 
         inner.addView(txtMsg)
@@ -106,8 +149,19 @@ class ChatIndividual : AppCompatActivity() {
         wrapper.addView(card)
 
         contenedorMensajes.addView(wrapper)
+        scrollToBottom()
+    }
+
+    private fun scrollToBottom() {
+        val scroll = findViewById<ScrollView>(R.id.scr12Mensajes)
+        scroll.post { scroll.fullScroll(View.FOCUS_DOWN) }
     }
 
     private fun dp(value: Int): Int =
         (value * resources.displayMetrics.density).toInt()
+
+    override fun onDestroy() {
+        super.onDestroy()
+        socketManager.disconnect()
+    }
 }
