@@ -2,6 +2,7 @@ package com.epn.doggo
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,15 +10,20 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.epn.doggo.data.DbHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MiPerfilActivity : AppCompatActivity() {
 
     private lateinit var duenoId: String
+    private lateinit var dbHelper: DbHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_6mi_perfil)
+
+        dbHelper = DbHelper(this)
 
         duenoId = intent.getStringExtra("usuario_id")
             ?: run {
@@ -27,8 +33,8 @@ class MiPerfilActivity : AppCompatActivity() {
             }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val btnLogout = findViewById<Button>(R.id.btnLogout)
         
-        // Referencias a los campos y botones de edición
         val valueName = findViewById<TextView>(R.id.valueName)
         val valueEmail = findViewById<TextView>(R.id.valueEmail)
         val valuePhone = findViewById<TextView>(R.id.valuePhone)
@@ -39,10 +45,12 @@ class MiPerfilActivity : AppCompatActivity() {
         val editPhone = findViewById<ImageView>(R.id.editPhone)
         val editAddress = findViewById<ImageView>(R.id.editAddress)
 
-        // Configurar selección actual en el menú
         bottomNavigationView.selectedItemId = R.id.nav_perfil
 
-        ////////////////////////////////////////////
+        btnLogout.setOnClickListener {
+            cerrarSesion()
+        }
+
         ApiClient.api.getUsuario(duenoId)
             .enqueue(object : retrofit2.Callback<GetUsuarioResponse> {
                 override fun onResponse(
@@ -51,42 +59,25 @@ class MiPerfilActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful && response.body() != null) {
                         val usuario = response.body()!!.data
-                        // AQUÍ YA TIENES LOS VALORES
                         valueName.text = usuario.nombre_completo
                         valueEmail.text = usuario.email
                         valuePhone.text = usuario.telefono
                         valueAddress.text = usuario.direccion
 
-                        // Lógica de edición
                         editName.setOnClickListener { mostrarDialogoEdicion("Nombre", valueName) }
                         editEmail.setOnClickListener { mostrarDialogoEdicion("Correo", valueEmail) }
                         editPhone.setOnClickListener { mostrarDialogoEdicion("Teléfono", valuePhone) }
                         editAddress.setOnClickListener { mostrarDialogoEdicion("Dirección", valueAddress) }
 
                     } else {
-                        Toast.makeText(
-                            this@MiPerfilActivity,
-                            "No se pudo obtener el usuario",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@MiPerfilActivity, "No se pudo obtener el usuario", Toast.LENGTH_SHORT).show()
                     }
                 }
-                override fun onFailure(
-                    call: retrofit2.Call<GetUsuarioResponse>,
-                    t: Throwable
-                ) {
-                    Toast.makeText(
-                        this@MiPerfilActivity,
-                        "Error de conexión",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                override fun onFailure(call: retrofit2.Call<GetUsuarioResponse>, t: Throwable) {
+                    Toast.makeText(this@MiPerfilActivity, "Error de conexión", Toast.LENGTH_SHORT).show()
                 }
             })
-        ////////////////////////////////////////////
 
-
-
-        // Configurar navegación
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> {
@@ -114,6 +105,14 @@ class MiPerfilActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun cerrarSesion() {
+        dbHelper.logout()
+        val intent = Intent(this, A1Bienvenida::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     private fun mostrarDialogoEdicion(titulo: String, textView: TextView) {

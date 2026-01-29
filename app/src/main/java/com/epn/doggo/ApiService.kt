@@ -1,4 +1,5 @@
 
+import com.epn.doggo.EstadisticasPaseadorResponse
 import com.epn.doggo.GetPaseadoresResponse
 import com.epn.doggo.GetUsuarioResponse
 import com.epn.doggo.LoginRequest
@@ -41,5 +42,7 @@ interface ApiService {
     @POST("paseo/solicitar")
     fun solicitarPaseo(@Body request: SolicitarPaseoRequest): Call<SolicitarPaseoResponse>
 
-}
+    @GET("paseo/estadisticas/{paseador_id}")
+    fun getEstadisticasPaseador(@Path("paseador_id") paseadorId: String): Call<EstadisticasPaseadorResponse>
 
+}
