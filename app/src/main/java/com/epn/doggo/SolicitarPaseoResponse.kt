@@ -14,7 +14,8 @@ data class PaseoApi(
     val fecha: String,
     val hora_inicio: String,
     val duracion_minutos: Int,
-    val estado: String,
     val notas: String,
-    val precio_total: Double
+    val precio_total: Double,
+    val estado: String,
+    val creado_en: String
 )

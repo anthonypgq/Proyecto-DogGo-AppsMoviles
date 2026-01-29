@@ -62,7 +62,7 @@ class B1Login : AppCompatActivity() {
                             val duenoId = userApi.id
                             
                             // Redireccionar según el rol (asumiendo que hay HomeDuenio y DashboardPaseador)
-                            val intent = if (userApi.rol == "Dueño") {
+                            val intent = if (userApi.rol == "dueño") {
                                 Intent(this@B1Login, DB1HomeDuenio::class.java)
                             } else {
                                 Intent(this@B1Login, DashboardPaseador::class.java)

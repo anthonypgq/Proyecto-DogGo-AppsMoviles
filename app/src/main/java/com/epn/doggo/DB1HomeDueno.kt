@@ -150,6 +150,7 @@ class PaseadorAdapter(private val paseadores: List<Paseador>) : RecyclerView.Ada
             val context = it.context
             val intent = Intent(context, PerfilPaseador::class.java)
             intent.putExtra("paseador_id", paseador.id)
+            intent.putExtra("paseador_tarifaHora", paseador.tarifaHora) //ENVIAR AL PERFILPASEADORA
             intent.putExtra("usuario_id", duenoId)
             // Opcional: Pasar datos del paseador a la actividad de perfil
             // intent.putExtra("NOMBRE_PASEADOR", paseador.nombre)

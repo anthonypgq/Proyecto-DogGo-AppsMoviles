@@ -51,6 +51,7 @@ class PerfilPaseador : AppCompatActivity() {
                         solicitarButton.setOnClickListener {
                             val intent = Intent(this@PerfilPaseador, SolicitudPaseador::class.java)
                             intent.putExtra("paseador_id", PaseadorId)
+                            intent.putExtras(intent.extras!!)
                             intent.putExtra("usuario_id", duenoId)
                             startActivity(intent)
                         }
