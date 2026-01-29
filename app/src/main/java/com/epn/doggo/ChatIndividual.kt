@@ -30,7 +30,7 @@ class ChatIndividual : AppCompatActivity() {
 
         // Input bar
         edtMensaje = findViewById(R.id.edt12EscribirMensaje)
-        btnEnviar = findViewById(R.id.crd12BtnEnviar)
+        btnEnviar = findViewById(R.id.btn12Enviar)
 
         // Contenedor mensajes
         contenedorMensajes = findViewById(R.id.lin12ContenedorMensajes)

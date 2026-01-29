@@ -1,66 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lay12RootChatIndividual"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#F5F5F5">
 
-    <!-- AppBar -->
+    <!-- AppBar (Custom) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lay12AppBar"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:background="#FFFFFF"
-        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="4dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img12BtnAtras"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:src="@android:drawable/ic_media_previous"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:src="@drawable/ic_arrowback"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="#1A1A1A" />
+            app:tint="#0D47A1" />
 
-        <ImageView
-            android:id="@+id/img12AvatarTop"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/foto"
-            android:scaleType="centerCrop"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAvatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            app:cardCornerRadius="22.5dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/img12BtnAtras"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img12AvatarTop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/foto" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="8dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardAvatar"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txt12NombreTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str12NombreDefault"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#1A1A1A"
-            app:layout_constraintStart_toEndOf="@id/img12AvatarTop"
-            app:layout_constraintTop_toTopOf="@id/img12AvatarTop"
-            android:layout_marginStart="10dp"/>
+            <TextView
+                android:id="@+id/txt12NombreTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str12NombreDefault"
+                android:textColor="#1A1A1A"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txt12EstadoTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str12EstadoEnLinea"
-            android:textSize="13sp"
-            android:textColor="#1DB954"
-            app:layout_constraintStart_toStartOf="@id/txt12NombreTop"
-            app:layout_constraintTop_toBottomOf="@id/txt12NombreTop"
-            android:layout_marginTop="2dp"/>
+            <TextView
+                android:id="@+id/txt12EstadoTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str12EstadoEnLinea"
+                android:textColor="#1DB954"
+                android:textSize="13sp" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,34 +87,34 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/lay12AppBar"
         app:layout_constraintBottom_toTopOf="@id/lay12InputBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/lay12AppBar">
 
         <LinearLayout
             android:id="@+id/lin12ContenedorMensajes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="14dp">
+            android:padding="16dp">
 
             <!-- Burbuja derecha 1 -->
             <LinearLayout
                 android:id="@+id/lin12MsgDer1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:layout_gravity="end">
+                android:layout_gravity="end"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/crd12BubbleDer1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    android:backgroundTint="#1E63FF">
+                    app:cardBackgroundColor="#0D47A1"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -110,19 +127,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/str12MsgDer1"
-                            android:textSize="15sp"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/txt12HoraDer1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="4dp"
                             android:text="@string/str12Hora1"
-                            android:textSize="12sp"
-                            android:textColor="#DCE6FF"
-                            android:layout_marginTop="6dp" />
+                            android:textColor="#B3E5FC"
+                            android:textSize="11sp" />
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
@@ -131,15 +148,17 @@
                 android:id="@+id/lin12MsgIzq1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start">
+                android:layout_gravity="start"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/crd12BubbleIzq1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    android:backgroundTint="#F2F2F2">
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -152,18 +171,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/str12MsgIzq1"
-                            android:textSize="15sp"
-                            android:textColor="#1A1A1A" />
+                            android:textColor="#1A1A1A"
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/txt12HoraIzq1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="4dp"
                             android:text="@string/str12Hora2"
-                            android:textSize="12sp"
                             android:textColor="#8A8A8A"
-                            android:layout_marginTop="6dp" />
-
+                            android:textSize="11sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -174,15 +193,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="14dp">
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/crd12BubbleDer2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    android:backgroundTint="#1E63FF">
+                    app:cardBackgroundColor="#0D47A1"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -195,62 +215,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/str12MsgDer2"
-                            android:textSize="15sp"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/txt12HoraDer2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="4dp"
                             android:text="@string/str12Hora3"
-                            android:textSize="12sp"
-                            android:textColor="#DCE6FF"
-                            android:layout_marginTop="6dp" />
+                            android:textColor="#B3E5FC"
+                            android:textSize="11sp" />
                     </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <!-- Burbuja izquierda 2 -->
-            <LinearLayout
-                android:id="@+id/lin12MsgIzq2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="14dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/crd12BubbleIzq2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    android:backgroundTint="#F2F2F2">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="12dp">
-
-                        <TextView
-                            android:id="@+id/txt12MsgIzq2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str12MsgIzq2"
-                            android:textSize="15sp"
-                            android:textColor="#1A1A1A" />
-
-                        <TextView
-                            android:id="@+id/txt12HoraIzq2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str12Hora3"
-                            android:textSize="12sp"
-                            android:textColor="#8A8A8A"
-                            android:layout_marginTop="6dp" />
-                    </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
@@ -258,63 +235,55 @@
     </ScrollView>
 
     <!-- Input bar inferior -->
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/lay12InputBar"
         android:layout_width="0dp"
-        android:layout_height="74dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="14dp"
-        android:paddingEnd="14dp"
-        android:background="#FFFFFF"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/crd12CajaTexto"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            android:backgroundTint="#F2F2F2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp">
 
             <EditText
                 android:id="@+id/edt12EscribirMensaje"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:gravity="center_vertical"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
                 android:hint="@string/str12HintEscribeMensaje"
-                android:textSize="14sp"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences"
                 android:textColor="#1A1A1A"
-                android:textColorHint="#9A9A9A" />
-        </androidx.cardview.widget.CardView>
+                android:textColorHint="#9A9A9A"
+                android:textSize="15sp" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/crd12BtnEnviar"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            app:cardCornerRadius="23dp"
-            app:cardElevation="0dp"
-            android:backgroundTint="#1E63FF"
-            android:foreground="?attr/selectableItemBackground">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn12Enviar"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:backgroundTint="#0D47A1"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="22dp"
+                app:icon="@android:drawable/ic_menu_send"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="#FFFFFF" />
 
-            <ImageView
-                android:id="@+id/img12IconEnviar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp"
-                android:src="@android:drawable/ic_menu_send"
-                app:tint="#FFFFFF" />
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
