@@ -10,21 +10,20 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.epn.doggo.data.DbHelper
 
-
 class A1Bienvenida : AppCompatActivity() {
     private lateinit var dbHelper: DbHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // Verificar si hay una sesión activa antes de mostrar la bienvenida
         dbHelper = DbHelper(this)
         val sessionUser = dbHelper.getUser()
+        
         if (sessionUser != null) {
-            val intent = if (sessionUser.rol == "paseador") {
-                Intent(this, DashboardPaseador::class.java)
-            } else {
+            val intent = if (sessionUser.rol.equals("dueño", ignoreCase = true)) {
                 Intent(this, DB1HomeDuenio::class.java)
+            } else {
+                Intent(this, DashboardPaseador::class.java)
             }
             intent.putExtra("usuario_id", sessionUser.id)
             startActivity(intent)
@@ -36,8 +35,8 @@ class A1Bienvenida : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         applyInsets()
 
-        val btnStart = findViewById<Button>(R.id.btnComenzar);
-        val btnSesion = findViewById<Button>(R.id.btnSesion);
+        val btnStart = findViewById<Button>(R.id.btnComenzar)
+        val btnSesion = findViewById<Button>(R.id.btnSesion)
 
         btnStart.setOnClickListener {
             val intent = Intent(this, C1SeleccionRol::class.java)
@@ -51,7 +50,7 @@ class A1Bienvenida : AppCompatActivity() {
     }
 
     private fun applyInsets() {
-        val root = findViewById<View>(R.id.main)
+        val root = findViewById<View>(R.id.main) ?: return
 
         val originalTop = root.paddingTop
         val originalBottom = root.paddingBottom
